@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arthur — Girlfriend Application</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f2f0eb;
+      --white: #ffffff;
+      --ink: #0e0e0e;
+      --mid: #555;
+      --light: #999;
+      --border: #d8d4cc;
+      --yellow: #e8e455;
+      --yellow-dark: #d4d048;
+      --green: #b6f0c8;
+      --radius: 999px;
+    }
+
+    body {
+      background: var(--bg);
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: var(--ink);
+      line-height: 1.5;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: var(--ink);
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+      height: 52px;
+      gap: 8px;
+    }
+
+    .nav-logo {
+      background: var(--yellow);
+      color: var(--ink);
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+      padding: 6px 14px;
+      border-radius: var(--radius);
+      margin-right: 8px;
+      white-space: nowrap;
+    }
+
+    .nav-pills {
+      display: flex;
+      gap: 6px;
+      flex: 1;
+    }
+
+    .nav-pill {
+      padding: 6px 16px;
+      border-radius: var(--radius);
+      border: 1.5px solid rgba(255,255,255,0.18);
+      color: rgba(255,255,255,0.75);
+      font-size: 13px;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+      white-space: nowrap;
+    }
+
+    .nav-pill:hover, .nav-pill.active {
+      background: rgba(255,255,255,0.12);
+      color: #fff;
+      border-color: rgba(255,255,255,0.4);
+    }
+
+    .nav-cta {
+      margin-left: auto;
+      background: var(--yellow);
+      color: var(--ink);
+      font-weight: 600;
+      font-size: 13px;
+      padding: 8px 20px;
+      border-radius: var(--radius);
+      border: none;
+      cursor: pointer;
+      transition: background 0.15s;
+      white-space: nowrap;
+    }
+
+    .nav-cta:hover { background: var(--yellow-dark); }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 80px 48px 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 28px;
+    }
+
+    .hero-eyebrow-dot {
+      width: 6px; height: 6px;
+      background: var(--yellow);
+      border-radius: 50%;
+    }
+
+    .hero-title {
+      font-size: clamp(56px, 10vw, 120px);
+      font-weight: 600;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: transparent;
+      -webkit-text-stroke: 2px var(--ink);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .hero-title span {
+      color: var(--ink);
+      -webkit-text-stroke: 0;
+    }
+
+    .hero-sub {
+      font-size: 15px;
+      color: var(--mid);
+      max-width: 480px;
+      margin: 0 auto 40px;
+      line-height: 1.75;
+    }
+
+    /* colored tab bars (D&AD style) */
+    .tab-bars {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: 52px;
+      text-align: left;
+    }
+
+    .tab-bar-row {
+      display: flex;
+      gap: 6px;
+    }
+
+    .tab-bar-item {
+      padding: 10px 20px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: opacity 0.15s;
+      border-radius: 2px;
+    }
+
+    .tab-bar-item:hover { opacity: 0.8; }
+
+    .tb-gray  { background: #aaa9a3; color: #fff; flex: 2; }
+    .tb-olive { background: #8a8c5a; color: #fff; flex: 1.5; }
+    .tb-purple{ background: #7c6fa0; color: #fff; flex: 1; }
+    .tb-yellow{ background: var(--yellow); color: var(--ink); flex: 1; }
+    .tb-white { background: #e0ddd6; color: var(--ink); flex: 1.5; }
+    .tb-red   { background: #d94f2b; color: #fff; flex: 1; }
+    .tb-teal  { background: #4a8a7a; color: #fff; flex: 1.2; }
+
+    /* ── GRID CARDS ── */
+    .section {
+      padding: 64px 48px;
+    }
+
+    .section-label {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--light);
+      margin-bottom: 24px;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 24px 28px 28px;
+      display: flex;
+      flex-direction: column;
+      min-height: 200px;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .card-tag {
+      display: inline-block;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      color: var(--mid);
+      align-self: flex-start;
+      margin-bottom: auto;
+    }
+
+    .card-num {
+      font-size: 80px;
+      font-weight: 600;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      color: var(--ink);
+      margin: 16px 0 8px;
+    }
+
+    .card-title {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--mid);
+      line-height: 1.5;
+    }
+
+    .card-arrow {
+      position: absolute;
+      bottom: 24px;
+      right: 24px;
+      width: 32px; height: 32px;
+      background: var(--ink);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .card.dark {
+      background: var(--ink);
+      border-color: var(--ink);
+    }
+
+    .card.dark .card-tag {
+      border-color: rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.6);
+    }
+
+    .card.dark .card-title {
+      color: rgba(255,255,255,0.9);
+      font-size: 15px;
+      font-weight: 500;
+      line-height: 1.65;
+      letter-spacing: 0.01em;
+    }
+
+    .card.dark .card-coming {
+      font-size: 11px;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-top: 12px;
+    }
+
+    .card.dark .card-arrow {
+      background: rgba(255,255,255,0.12);
+    }
+
+    /* ── DIVIDER ── */
+    hr.div {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0 48px;
+    }
+
+    /* ── APPLICATION SECTION (Joshua Kaplan style) ── */
+    .app-section {
+      padding: 64px 48px;
+    }
+
+    .app-header {
+      margin-bottom: 48px;
+    }
+
+    .app-name {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 600;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .pill {
+      padding: 6px 16px;
+      border-radius: var(--radius);
+      font-size: 13px;
+      cursor: default;
+    }
+
+    .pill-yellow { background: var(--yellow); color: var(--ink); font-weight: 500; }
+    .pill-green  { background: var(--green);  color: var(--ink); }
+    .pill-outline{ border: 1.5px solid var(--border); color: var(--ink); }
+
+    .app-desc {
+      font-size: 14px;
+      color: var(--mid);
+      max-width: 520px;
+      line-height: 1.8;
+      margin-top: 16px;
+    }
+
+    /* ── FORM TABLE (Joshua Kaplan numbered sections) ── */
+    .form-blocks {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .form-num {
+      font-size: 32px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 12px;
+    }
+
+    .form-block-wrap {
+      padding: 36px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .form-block-title {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .form-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .form-table tr {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .form-table tr:last-child {
+      border-bottom: none;
+    }
+
+    .form-table td {
+      padding: 14px 0;
+      vertical-align: top;
+    }
+
+    .form-table td:first-child {
+      width: 180px;
+      font-size: 13px;
+      color: var(--mid);
+      padding-right: 24px;
+      padding-top: 18px;
+    }
+
+    .form-table td:last-child {
+      width: 100%;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="email"],
+    select,
+    textarea {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 1.5px solid var(--border);
+      padding: 10px 0;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: var(--ink);
+      outline: none;
+      transition: border-color 0.2s;
+      -webkit-appearance: none;
+      border-radius: 0;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-bottom-color: var(--ink);
+    }
+
+    input::placeholder, textarea::placeholder {
+      color: #bbb;
+    }
+
+    select {
+      cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23999'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 4px center;
+      padding-right: 22px;
+    }
+
+    textarea {
+      resize: none;
+      height: 80px;
+      line-height: 1.75;
+    }
+
+    .inline-fields {
+      display: flex;
+      gap: 24px;
+    }
+
+    .inline-field {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .inline-label {
+      font-size: 11px;
+      color: var(--light);
+      letter-spacing: 0.08em;
+    }
+
+    .field-unit-wrap {
+      position: relative;
+    }
+
+    .field-unit-wrap input {
+      padding-right: 28px;
+    }
+
+    .field-unit {
+      position: absolute;
+      right: 0;
+      bottom: 12px;
+      font-size: 11px;
+      color: var(--light);
+    }
+
+    /* ── UPLOAD ── */
+    .upload-zone {
+      border: 1.5px dashed var(--border);
+      border-radius: 8px;
+      padding: 32px;
+      text-align: center;
+      cursor: pointer;
+      position: relative;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .upload-zone:hover {
+      border-color: var(--ink);
+      background: rgba(0,0,0,0.02);
+    }
+
+    .upload-zone input[type="file"] {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      cursor: pointer;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .upload-plus { font-size: 20px; color: var(--light); margin-bottom: 8px; }
+    .upload-text { font-size: 13px; color: var(--mid); }
+    .upload-hint { font-size: 11px; color: var(--light); margin-top: 4px; }
+
+    .photo-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .photo-thumb {
+      width: 72px; height: 72px;
+      object-fit: cover;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+    }
+
+    /* ── SUBMIT ── */
+    .submit-block {
+      padding: 48px 48px 80px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    .submit-note {
+      font-size: 13px;
+      color: var(--light);
+      max-width: 420px;
+      line-height: 1.75;
+    }
+
+    .submit-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 12px;
+    }
+
+    .btn-apply {
+      background: var(--ink);
+      color: #fff;
+      border: none;
+      padding: 16px 48px;
+      border-radius: var(--radius);
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.15s;
+      letter-spacing: 0.02em;
+    }
+
+    .btn-apply:hover { opacity: 0.8; }
+
+    .btn-note {
+      font-size: 11px;
+      color: var(--light);
+      letter-spacing: 0.06em;
+    }
+
+    /* ── BACK TO TOP ── */
+    .back-top {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      width: 48px; height: 48px;
+      background: var(--ink);
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      cursor: pointer;
+      transition: opacity 0.2s;
+      z-index: 40;
+      opacity: 0;
+    }
+
+    .back-top.visible { opacity: 1; }
+
+    /* ── SUCCESS ── */
+    .success-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(14,14,14,0.92);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 12px;
+      text-align: center;
+    }
+
+    .success-overlay.show { display: flex; }
+
+    .success-tag {
+      background: var(--yellow);
+      color: var(--ink);
+      padding: 6px 20px;
+      border-radius: var(--radius);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .success-title {
+      font-size: 48px;
+      font-weight: 600;
+      color: #fff;
+      letter-spacing: -0.02em;
+      margin-top: 8px;
+    }
+
+    .success-body {
+      font-size: 14px;
+      color: rgba(255,255,255,0.5);
+      max-width: 320px;
+      line-height: 1.75;
+      margin-top: 8px;
+    }
+
+    .btn-back {
+      margin-top: 24px;
+      border: 1.5px solid rgba(255,255,255,0.2);
+      background: none;
+      color: #fff;
+      padding: 12px 36px;
+      border-radius: var(--radius);
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      cursor: pointer;
+      transition: border-color 0.15s;
+    }
+
+    .btn-back:hover { border-color: rgba(255,255,255,0.5); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 700px) {
+      nav { padding: 0 16px; }
+      .nav-pills { display: none; }
+      .hero { padding: 52px 24px 0; }
+      .section, .app-section { padding: 48px 24px; }
+      hr.div { margin: 0 24px; }
+      .cards-grid { grid-template-columns: 1fr; }
+      .form-table td:first-child { width: 120px; }
+      .inline-fields { flex-direction: column; gap: 0; }
+      .submit-block { padding: 40px 24px 64px; flex-direction: column; }
+      .submit-right { align-items: flex-start; }
+      .btn-apply { width: 100%; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Back to top -->
+<div class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</div>
+
+<!-- Success -->
+<div class="success-overlay" id="successOverlay">
+  <div class="success-tag">Application Received</div>
+  <div class="success-title">We'll be in touch.</div>
+  <p class="success-body">Your application has been submitted. Arthur personally reviews every profile — if you meet his criteria, you'll hear from us.</p>
+  <button class="btn-back" onclick="document.getElementById('successOverlay').classList.remove('show')">Back</button>
+</div>
+
+<!-- Nav -->
+<nav>
+  <div class="nav-logo">● Arthur™</div>
+  <div class="nav-pills">
+    <div class="nav-pill active">● Application</div>
+    <div class="nav-pill">Requirements</div>
+    <div class="nav-pill">About Arthur</div>
+    <div class="nav-pill">FAQ</div>
+  </div>
+  <button class="nav-cta" onclick="document.querySelector('.app-section').scrollIntoView({behavior:'smooth'})">● Apply Now</button>
+</nav>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-eyebrow">
+    <span class="hero-eyebrow-dot"></span>
+    Open Recruitment — 2024
+  </div>
+  <h1 class="hero-title">ARTHUR'S<br/><span>GIRLFRIEND</span><br/>APPLICATION</h1>
+  <p class="hero-sub">This is not a dating app. This is a curated selection process. Arthur reviews every application personally — only candidates who meet his standards will be considered.</p>
+
+  <!-- D&AD style tab bars -->
+  <div class="tab-bars">
+    <div class="tab-bar-row">
+      <div class="tab-bar-item tb-gray">Education</div>
+      <div class="tab-bar-item tb-yellow">Background</div>
+    </div>
+    <div class="tab-bar-row">
+      <div class="tab-bar-item tb-olive">Family</div>
+      <div class="tab-bar-item tb-purple">Appearance</div>
+      <div class="tab-bar-item tb-white">Photos</div>
+    </div>
+    <div class="tab-bar-row">
+      <div class="tab-bar-item tb-red">Apply</div>
+      <div class="tab-bar-item tb-teal">Review</div>
+    </div>
+  </div>
+</div>
+
+<!-- Cards section -->
+<div class="section">
+  <div class="section-label">Why Apply</div>
+  <div class="cards-grid">
+
+    <div class="card">
+      <div class="card-tag">Criteria</div>
+      <div class="card-num">01</div>
+      <div class="card-title">Curated for quality.<br/>Not quantity.</div>
+      <div class="card-arrow">→</div>
+    </div>
+
+    <div class="card">
+      <div class="card-tag">Process</div>
+      <div class="card-num">02</div>
+      <div class="card-title">Arthur reviews<br/>every profile himself.</div>
+      <div class="card-arrow">→</div>
+    </div>
+
+    <div class="card dark">
+      <div class="card-tag">Selection</div>
+      <div class="card-title">Applications are screened against Arthur's personal standards — education, ambition, family values, and compatibility. Only the most suitable candidates proceed.</div>
+      <div class="card-coming">( Selective by design — )</div>
+      <div class="card-arrow">→</div>
+    </div>
+
+    <div class="card">
+      <div class="card-tag">Result</div>
+      <div class="card-num">04</div>
+      <div class="card-title">Shortlisted candidates<br/>will be contacted directly.</div>
+      <div class="card-arrow">→</div>
+    </div>
+
+  </div>
+</div>
+
+<hr class="div" />
+
+<!-- Application Form (Joshua Kaplan style) -->
+<div class="app-section" id="form-section">
+
+  <div class="app-header">
+    <h2 class="app-name">Arthur's Girlfriend<br/>Application Form</h2>
+
+    <div class="pill-row">
+      <span class="pill pill-yellow">Open Now</span>
+      <span class="pill pill-green">Accepting Applications</span>
+    </div>
+
+    <div class="pill-row">
+      <span class="pill pill-outline">Education</span>
+      <span class="pill pill-outline">Career</span>
+      <span class="pill pill-outline">Family</span>
+      <span class="pill pill-outline">Appearance</span>
+      <span class="pill pill-outline">Photos</span>
+    </div>
+
+    <p class="app-desc">Complete all sections truthfully. Arthur values honesty above all else. Incomplete or misleading applications will be disqualified immediately.</p>
+  </div>
+
+  <div class="app-section" style="padding:0;">
+  <form id="appForm" novalidate>
+  <div class="form-blocks">
+
+    <!-- 001 -->
+    <div class="form-block-wrap">
+      <div class="form-num">001</div>
+      <div class="form-block-title">
+        Education & Career
+        <span class="pill pill-outline" style="font-size:11px;">Required</span>
+      </div>
+      <table class="form-table">
+        <tr>
+          <td>Highest Degree</td>
+          <td>
+            <select>
+              <option value="" disabled selected>Select level</option>
+              <option>High School</option>
+              <option>Associate's Degree</option>
+              <option>Bachelor's Degree</option>
+              <option>Master's Degree</option>
+              <option>Doctoral Degree (PhD)</option>
+              <option>Other</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>University</td>
+          <td><input type="text" placeholder="e.g. University of Hong Kong" /></td>
+        </tr>
+        <tr>
+          <td>Occupation</td>
+          <td><input type="text" placeholder="e.g. Product Designer" /></td>
+        </tr>
+        <tr>
+          <td>Company / Industry</td>
+          <td><input type="text" placeholder="e.g. Finance, Technology, Healthcare" /></td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- 002 -->
+    <div class="form-block-wrap">
+      <div class="form-num">002</div>
+      <div class="form-block-title">
+        Parents' Occupation
+        <span class="pill pill-outline" style="font-size:11px;">Required</span>
+      </div>
+      <table class="form-table">
+        <tr>
+          <td>Father's Occupation</td>
+          <td><input type="text" placeholder="e.g. Physician, Businessman, Retired" /></td>
+        </tr>
+        <tr>
+          <td>Mother's Occupation</td>
+          <td><input type="text" placeholder="e.g. Lawyer, Educator, Homemaker" /></td>
+        </tr>
+        <tr>
+          <td>Family Background</td>
+          <td><textarea placeholder="Optional — describe your family background briefly…"></textarea></td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- 003 -->
+    <div class="form-block-wrap">
+      <div class="form-num">003</div>
+      <div class="form-block-title">
+        Physical Profile
+        <span class="pill pill-outline" style="font-size:11px;">Required</span>
+      </div>
+      <table class="form-table">
+        <tr>
+          <td>Height / Weight</td>
+          <td>
+            <div class="inline-fields">
+              <div class="inline-field">
+                <div class="inline-label">Height</div>
+                <div class="field-unit-wrap">
+                  <input type="number" placeholder="168" min="130" max="220" />
+                  <span class="field-unit">cm</span>
+                </div>
+              </div>
+              <div class="inline-field">
+                <div class="inline-label">Weight</div>
+                <div class="field-unit-wrap">
+                  <input type="number" placeholder="52" min="30" max="200" />
+                  <span class="field-unit">kg</span>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>Measurements</td>
+          <td>
+            <div class="inline-fields">
+              <div class="inline-field">
+                <div class="inline-label">Bust</div>
+                <div class="field-unit-wrap">
+                  <input type="number" placeholder="88" />
+                  <span class="field-unit">cm</span>
+                </div>
+              </div>
+              <div class="inline-field">
+                <div class="inline-label">Waist</div>
+                <div class="field-unit-wrap">
+                  <input type="number" placeholder="62" />
+                  <span class="field-unit">cm</span>
+                </div>
+              </div>
+              <div class="inline-field">
+                <div class="inline-label">Hips</div>
+                <div class="field-unit-wrap">
+                  <input type="number" placeholder="90" />
+                  <span class="field-unit">cm</span>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- 004 -->
+    <div class="form-block-wrap">
+      <div class="form-num">004</div>
+      <div class="form-block-title">
+        Upload Photos
+        <span class="pill pill-outline" style="font-size:11px;">Up to 6 images</span>
+      </div>
+      <div class="upload-zone" id="uploadZone">
+        <input type="file" accept="image/*" multiple id="photoInput" />
+        <div class="upload-plus">+</div>
+        <div class="upload-text">Click or drag photos here</div>
+        <div class="upload-hint">JPG, PNG, WEBP — clear, recent photos preferred</div>
+      </div>
+      <div class="photo-row" id="photoPreview"></div>
+    </div>
+
+  </div>
+  </form>
+  </div>
+
+</div>
+
+<!-- Submit -->
+<div class="submit-block">
+  <p class="submit-note">By submitting, you confirm all information provided is accurate. Arthur reserves the right to decline any application without explanation. All data is handled with discretion.</p>
+  <div class="submit-right">
+    <button class="btn-apply" onclick="handleSubmit()">Submit Application →</button>
+    <span class="btn-note">Reviewed within 7–14 days</span>
+  </div>
+</div>
+
+<script>
+  // Back to top visibility
+  window.addEventListener('scroll', () => {
+    document.getElementById('backTop').classList.toggle('visible', window.scrollY > 400);
+  });
+
+  // Photo preview
+  const photoInput = document.getElementById('photoInput');
+  const photoPreview = document.getElementById('photoPreview');
+
+  photoInput.addEventListener('change', () => {
+    photoPreview.innerHTML = '';
+    Array.from(photoInput.files).slice(0, 6).forEach(file => {
+      const reader = new FileReader();
+      reader.onload = e => {
+        const img = document.createElement('img');
+        img.src = e.target.result;
+        img.className = 'photo-thumb';
+        photoPreview.appendChild(img);
+      };
+      reader.readAsDataURL(file);
+    });
+  });
+
+  // Drag and drop
+  const uploadZone = document.getElementById('uploadZone');
+  uploadZone.addEventListener('dragover', e => {
+    e.preventDefault();
+    uploadZone.style.borderColor = '#0e0e0e';
+  });
+  uploadZone.addEventListener('dragleave', () => uploadZone.style.borderColor = '');
+  uploadZone.addEventListener('drop', e => {
+    e.preventDefault();
+    uploadZone.style.borderColor = '';
+    const dt = new DataTransfer();
+    Array.from(e.dataTransfer.files).slice(0, 6).forEach(f => dt.items.add(f));
+    photoInput.files = dt.files;
+    photoInput.dispatchEvent(new Event('change'));
+  });
+
+  // Nav pill switching
+  document.querySelectorAll('.nav-pill').forEach(p => {
+    p.addEventListener('click', () => {
+      document.querySelectorAll('.nav-pill').forEach(x => x.classList.remove('active'));
+      p.classList.add('active');
+    });
+  });
+
+  function handleSubmit() {
+    document.getElementById('successOverlay').classList.add('show');
+  }
+</script>
+</body>
+</html>
