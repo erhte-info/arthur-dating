@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diana Lee — Daily Brief</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #fff;
+    color: #111;
+    font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+    font-size: 15px;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  /* ── TAB NAV ── */
+  .tab-nav {
+    position: sticky;
+    top: 0;
+    background: #fff;
+    border-bottom: 1px solid #e8e8e8;
+    display: flex;
+    z-index: 100;
+  }
+  .tab-btn {
+    flex: 1;
+    padding: 16px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    color: #aaa;
+    background: none;
+    border: none;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+    text-align: center;
+  }
+  .tab-btn.active-wellness {
+    color: #2a6e00;
+    border-bottom: 2px solid #d4f080;
+  }
+  .tab-btn.active-market {
+    color: #003d99;
+    border-bottom: 2px solid #90b8ff;
+  }
+  .tab-btn.active-ai {
+    color: #6600cc;
+    border-bottom: 2px solid #cc99ff;
+  }
+  .tab-btn.active-achievable {
+    color: #111;
+    border-bottom: 2px solid #111;
+    font-weight: 700;
+  }
+  .tab-btn span { display: none; }
+
+  /* ── PAGES ── */
+  .page { display: none; padding: 28px 20px 60px; }
+  .page.active { display: block; }
+
+  /* ── SHARED ── */
+  .header h1 { font-size: 22px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 4px; }
+  .header .date { font-size: 13px; color: #888; letter-spacing: 0.3px; }
+
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 32px; }
+  .tag { border: 1px solid #ccc; border-radius: 20px; padding: 4px 12px; font-size: 12px; color: #555; }
+  .tag.green { background: #d4f080; color: #111; border-color: #d4f080; font-weight: 600; }
+  .tag.blue { background: #d0e8ff; color: #003d99; border-color: #a0c8ff; font-weight: 600; }
+
+  .section-title { font-size: 30px; font-weight: 700; line-height: 1.15; margin-bottom: 32px; letter-spacing: -1px; }
+
+  .card { margin-bottom: 44px; }
+  .card-number { font-size: 32px; font-weight: 300; color: #111; margin-bottom: 12px; letter-spacing: -1px; }
+  .card-table { width: 100%; border-collapse: collapse; }
+  .card-table tr { border-top: 1px solid #e8e8e8; }
+  .card-table tr:last-child { border-bottom: 1px solid #e8e8e8; }
+  .card-table td { padding: 10px 0; vertical-align: top; line-height: 1.55; }
+  .card-table td:first-child {
+    color: #999; font-size: 11px; width: 82px; padding-right: 14px;
+    white-space: nowrap; text-transform: uppercase; letter-spacing: 0.5px; padding-top: 12px;
+  }
+  .card-table td:last-child { color: #111; font-size: 14px; }
+  .cover-text { font-weight: 700; font-size: 15px; }
+  .hook-text { font-style: italic; color: #333; }
+  .insight-text { color: #2a6e00; font-weight: 500; }
+  .action-text { color: #888; font-style: italic; }
+  .resources a { display: block; color: #0057ff; text-decoration: none; font-size: 13px; margin-bottom: 4px; }
+
+  .pill-row { display: flex; gap: 6px; flex-wrap: wrap; }
+  .pill { background: #f4f4f4; border: 1px solid #e0e0e0; border-radius: 20px; padding: 3px 10px; font-size: 11px; color: #555; }
+  .pill.green { background: #edffd0; border-color: #aad860; color: #2a6e00; font-weight: 600; }
+  .pill.blue { background: #e0eeff; border-color: #90b8ff; color: #003d99; font-weight: 600; }
+  .pill.red { background: #fff0f0; border-color: #ffb0b0; color: #990000; font-weight: 600; }
+
+  .section-divider { border: none; border-top: 1px solid #e8e8e8; margin: 48px 0 40px; }
+
+  /* ── TRIGGER BAR ── */
+  .trigger-bar { background: #f7f7f7; border-radius: 12px; padding: 16px; margin: 8px 0; }
+  .trigger-bar .label { font-size: 11px; color: #999; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; }
+  .trigger-row { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; border-bottom: 1px solid #ebebeb; font-size: 13px; }
+  .trigger-row:last-child { border-bottom: none; }
+  .trigger-row .price { font-weight: 700; }
+  .trigger-row .action { color: #888; font-size: 12px; }
+  .current-price { font-size: 28px; font-weight: 700; letter-spacing: -1px; margin-bottom: 4px; }
+  .price-change.down { color: #cc0000; font-size: 13px; }
+  .safe-badge { display: inline-block; background: #edffd0; color: #2a6e00; border: 1px solid #aad860; border-radius: 20px; padding: 3px 10px; font-size: 11px; font-weight: 600; margin-top: 6px; }
+
+  /* ── READING LIST ── */
+  .reading-card { margin-bottom: 36px; }
+  .reading-number { font-size: 12px; color: #aaa; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 8px; }
+  .reading-title { font-size: 17px; font-weight: 700; line-height: 1.3; margin-bottom: 4px; letter-spacing: -0.3px; }
+  .reading-source { font-size: 11px; color: #aaa; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }
+  .reading-summary { font-size: 14px; color: #333; line-height: 1.65; margin-bottom: 12px; }
+  .reading-keypoints { margin-bottom: 12px; }
+  .reading-keypoints ul { list-style: none; padding: 0; }
+  .reading-keypoints li { font-size: 13px; color: #333; padding: 4px 0; border-bottom: 1px solid #f0f0f0; padding-left: 14px; position: relative; line-height: 1.4; }
+  .reading-keypoints li::before { content: '→'; position: absolute; left: 0; color: #aaa; font-size: 11px; top: 5px; }
+  .reading-link { display: inline-block; font-size: 12px; color: #0057ff; text-decoration: none; border: 1px solid #0057ff; border-radius: 20px; padding: 4px 12px; }
+
+  /* ── ACHIEVABLE ROW ── */
+  .achievable-row td { background: #f7f7f7; border-top: 2px solid #111 !important; }
+  .achievable-row td:first-child { color: #111 !important; font-weight: 700 !important; font-size: 11px; }
+  .achievable-text { font-size: 13px !important; color: #111 !important; line-height: 1.6; }
+
+  /* ── FOOTER ── */
+  .footer { margin-top: 48px; padding-top: 18px; border-top: 1px solid #e8e8e8; font-size: 12px; color: #aaa; display: flex; justify-content: space-between; align-items: center; }
+  .footer .cta { color: #0057ff; font-size: 12px; }
+</style>
+</head>
+<body>
+
+<!-- TAB NAV -->
+<nav class="tab-nav">
+  <button class="tab-btn active-wellness" onclick="switchTab('wellness')">
+    Wellness Brief
+  </button>
+  <button class="tab-btn" onclick="switchTab('market')">
+    Market Insight
+  </button>
+  <button class="tab-btn" onclick="switchTab('ai')">
+    AI Insight
+  </button>
+</nav>
+
+
+<!-- ══════════ PAGE 1: WELLNESS ══════════ -->
+<div id="page-wellness" class="page active">
+
+  <div class="header">
+    <h1>💪🏻 Wellness Content Creator 2.0</h1>
+    <div class="date">Daily Brief — 2026.06.05 · 05:00</div>
+  </div>
+
+  <div class="tags">
+    <span class="tag green">Recovery</span>
+    <span class="tag green">Longevity</span>
+    <span class="tag">晨間系統</span>
+    <span class="tag">Diana ready</span>
+  </div>
+
+  <div class="section-title">Today's<br>Briefs</div>
+
+  <div class="card">
+    <div class="card-number">001</div>
+    <table class="card-table">
+      <tr><td>Topic</td><td>Cold Water Reset</td></tr>
+      <tr><td>Pillar</td><td><div class="pill-row"><span class="pill green">Recovery</span><span class="pill">Biohacking</span></div></td></tr>
+      <tr><td>Cover</td><td class="cover-text">Cold water is free therapy.</td></tr>
+      <tr><td>Hook</td><td class="hook-text">"I've spent thousands on supplements. Nothing resets faster than 2 minutes of cold."</td></tr>
+      <tr><td>Trend</td><td>Rhonda Patrick 研究顯示冷熱交替對多巴胺、抗焦慮效果顯著；冷療進入主流創業者日常</td></tr>
+      <tr><td>Insight</td><td class="insight-text">它的價值不是挑戰自己——是唯一能在 2 分鐘內完全重設神經系統的事</td></tr>
+      <tr><td>Conclusion</td><td>2 分鐘，每天一次。入門成本是零，回報是清醒的一整天。</td></tr>
+      <tr><td>Read</td><td class="resources"><a href="https://hubermanlab.com/the-science-and-use-of-cold-exposure-for-health-and-performance/" target="_blank">↗ Huberman — Cold Exposure Science</a></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-number">002</div>
+    <table class="card-table">
+      <tr><td>Topic</td><td>VO2 Max Is Your Lifespan</td></tr>
+      <tr><td>Pillar</td><td><div class="pill-row"><span class="pill green">Longevity</span><span class="pill">Physical Performance</span></div></td></tr>
+      <tr><td>Cover</td><td class="cover-text">Your VO2 max is your deadline.</td></tr>
+      <tr><td>Hook</td><td class="hook-text">"The single best predictor of how long you'll live isn't your diet. It's this number."</td></tr>
+      <tr><td>Trend</td><td>Peter Attia 持續強調 VO2 max 是全因死亡率最強預測指標；Zone 2 成為 2026 最熱訓練方式</td></tr>
+      <tr><td>Insight</td><td class="insight-text">大家花錢買補充劑延壽——但最有效的長壽工具是免費的：每週 3 次 Zone 2 有氧</td></tr>
+      <tr><td>Conclusion</td><td>不需要昂貴設備。知道你的 VO2 max，然後開始提升它。這是最划算的長壽投資。</td></tr>
+      <tr><td>Read</td><td class="resources"><a href="https://peterattiamd.com/vo2max/" target="_blank">↗ Peter Attia — Why VO2 Max Matters</a></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-number">003</div>
+    <table class="card-table">
+      <tr><td>Topic</td><td>Morning Is Yours First</td></tr>
+      <tr><td>Pillar</td><td><div class="pill-row"><span class="pill green">晨間系統</span><span class="pill">Cognitive Performance</span></div></td></tr>
+      <tr><td>Cover</td><td class="cover-text">5am. Before the world wakes.</td></tr>
+      <tr><td>Hook</td><td class="hook-text">"I don't wake up at 5am because I'm disciplined. I do it because I'm greedy."</td></tr>
+      <tr><td>Trend</td><td>Bryan Johnson 強調睡眠是「世界上最強大的藥」，Blueprint 協議以睡眠優化為核心</td></tr>
+      <tr><td>Insight</td><td class="insight-text">5am 的本質不是自律——是在別人的需求出現之前，先把最好的認知狀態留給自己</td></tr>
+      <tr><td>Conclusion</td><td>早起不是自律練習。是你每天送給自己的第一份禮物——在世界開始索取之前。</td></tr>
+      <tr><td>Read</td><td class="resources"><a href="https://time.com/collections/future-of-living/7341335/bryan-johnson-longevity/" target="_blank">↗ Bryan Johnson — Sleep Is the Most Powerful Drug</a></td></tr>
+    </table>
+  </div>
+
+  <hr class="section-divider">
+  <div class="section-title">Reading<br>List</div>
+
+  <div class="reading-card">
+    <div class="reading-number">Read · 01</div>
+    <div class="reading-title">VO2 Max — Peter Attia</div>
+    <div class="reading-source">peterattiamd.com</div>
+    <div class="reading-summary">VO2 max 是你的身體每分鐘能利用的最大氧氣量。它是目前研究中預測壽命最準的單一指標，比血壓、膽固醇都強。低 VO2 max 的人全因死亡風險是高的人的 4 倍。</div>
+    <div class="reading-keypoints"><ul>
+      <li>VO2 max 低 → 死亡風險高 4 倍</li>
+      <li>Zone 2（能說話但有點喘）是最有效的提升方式</li>
+      <li>每週 3 次、每次 45 分鐘，12 週可見成效</li>
+    </ul></div>
+    <a class="reading-link" href="https://peterattiamd.com/vo2max/" target="_blank">閱讀全文 ↗</a>
+  </div>
+
+  <div class="reading-card">
+    <div class="reading-number">Read · 02</div>
+    <div class="reading-title">Bryan Johnson 為什麼停用 Rapamycin — TIME</div>
+    <div class="reading-source">time.com</div>
+    <div class="reading-summary">Rapamycin 是 biohacker 圈廣泛用於抗衰老的藥物。Johnson 在使用後宣布停用，因免疫抑制副作用風險超過效益。他現在的協議回歸基本：睡眠、飲食、運動。</div>
+    <div class="reading-keypoints"><ul>
+      <li>副作用：免疫力下降、傷口癒合變慢</li>
+      <li>Johnson 現在 9pm 就寢，以睡眠優化為核心</li>
+      <li>「睡眠是免費的最強藥物」</li>
+    </ul></div>
+    <a class="reading-link" href="https://time.com/collections/future-of-living/7341335/bryan-johnson-longevity/" target="_blank">閱讀全文 ↗</a>
+  </div>
+
+  <div class="reading-card">
+    <div class="reading-number">Read · 03</div>
+    <div class="reading-title">冷暴露對大腦的影響 — Andrew Huberman</div>
+    <div class="reading-source">hubermanlab.com</div>
+    <div class="reading-summary">冷水會立即觸發腎上腺素大量釋放，使多巴胺持續升高長達 3 小時。每週累積 11 分鐘的冷暴露即可達到顯著效果。</div>
+    <div class="reading-keypoints"><ul>
+      <li>腎上腺素上升 200–300%，效果持續 3–4 小時</li>
+      <li>每週 11 分鐘總量就夠，可分次累積</li>
+      <li>冷熱交替（桑拿 + 冷水）效果更強</li>
+    </ul></div>
+    <a class="reading-link" href="https://hubermanlab.com/the-science-and-use-of-cold-exposure-for-health-and-performance/" target="_blank">閱讀全文 ↗</a>
+  </div>
+
+  <div class="footer">
+    <span>💪🏻 Wellness Content Creator 2.0</span>
+    <span class="cta">輸入 [Diana] 主題：＿ →</span>
+  </div>
+</div>
+
+
+<!-- ══════════ PAGE 2: MARKET ══════════ -->
+<div id="page-market" class="page">
+
+  <div class="header">
+    <h1>📊 Market Insight</h1>
+    <div class="date">Diana Lee © 2026.06.05 · 05:00</div>
+  </div>
+
+  <div class="tags">
+    <span class="tag blue">大盤</span>
+    <span class="tag blue">科技股</span>
+    <span class="tag">油價</span>
+    <span class="tag">生技</span>
+    <span class="tag">裝修公司</span>
+  </div>
+
+  <div class="section-title">Today's<br>Market</div>
+
+  <div class="card">
+    <div class="card-number">001</div>
+    <table class="card-table">
+      <tr><td>方向</td><td><div class="pill-row"><span class="pill red">偏空 ▼ -0.94%</span></div></td></tr>
+      <tr><td>故事</td><td>上週大盤剛創歷史新高，大量投資人選擇在高點把獲利落袋為安。加上晶片大廠 Broadcom 業績雖亮眼，卻沒有拉高全年 AI 預測——現在的市場不是「好」就夠，要「超乎想像的好」才行。賣壓從科技股蔓延整個大盤。</td></tr>
+      <tr><td>你要做什麼</td><td class="action-text">不動，繼續等。</td></tr>
+      <tr class="achievable-row"><td>Achievable</td><td class="achievable-text">市場情緒悲觀 → 延後非緊急支出決策，不擴張；客戶付款條件收緊，縮短帳期；現金為王。</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-number">002</div>
+    <table class="card-table">
+      <tr>
+        <td>QQQ 今日</td>
+        <td>
+          <div class="current-price">$739.94</div>
+          <div class="price-change down">▼ -$6.88 今日</div>
+          <span class="safe-badge">✓ 安全區間</span>
+        </td>
+      </tr>
+      <tr>
+        <td>出手雷達</td>
+        <td>
+          <div class="trigger-bar">
+            <div class="label">基準 — 近期高點 $746 · 低點 $511.93（2025年5月30日）· 區間 $234 · 中間值 $629</div>
+            <div class="trigger-row">
+              <span>⬇ <span class="price">$699</span></span>
+              <span style="color:#555;font-size:12px">距今 -5.5%　開始留意，小量試水</span>
+            </div>
+            <div class="trigger-row">
+              <span>⬇ <span class="price">$669</span></span>
+              <span style="color:#555;font-size:12px">距今 -9.6%　分批開始買進</span>
+            </div>
+            <div class="trigger-row">
+              <span>⬇ <span class="price">$629</span> <span style="font-size:11px;color:#aaa">高低中間值</span></span>
+              <span style="color:#003d99;font-size:12px;font-weight:600">距今 -15%　加快節奏</span>
+            </div>
+            <div class="trigger-row">
+              <span>⬇ <span class="price">$511</span> <span style="font-size:11px;color:#aaa">2025.05 低點</span></span>
+              <span style="color:#cc0000;font-size:12px;font-weight:600">距今 -30.8%　全力出手</span>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>你的成本</td>
+        <td>
+          <div class="trigger-bar">
+            <div class="label">QQQ 平均買點參考</div>
+            <div class="trigger-row">
+              <span>你的平均成本</span>
+              <span style="font-weight:700">$455.60</span>
+            </div>
+            <div class="trigger-row">
+              <span>目前含報酬</span>
+              <span style="color:#2a6e00;font-weight:700">+$284.34（+62.6%）</span>
+            </div>
+            <div class="trigger-row">
+              <span>即使跌到 2025 低點 $511</span>
+              <span style="color:#2a6e00;font-size:12px">你仍有 +12% 的緩衝</span>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr class="achievable-row"><td>Achievable</td><td class="achievable-text">科技股高點回落、高端客戶帳面縮水 → 主動聯繫 6 個月內詢價未成案的客戶；準備「局部翻新小方案」話術，讓猶豫客戶先從小案開始。</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-number">003</div>
+    <table class="card-table">
+      <tr><td>機會一</td><td><strong>VNQ</strong>（房地產 ETF）<br>低估約 12%。升息循環結束後最被冷落的板塊，估值差距只有金融海嘯和 COVID 當時才這麼大過。</td></tr>
+      <tr><td>機會二</td><td><strong>GE Vernova</strong><br>AI 機房用電量暴增，電網建設跟不上。這家公司是幫電網升級的設備供應商，還沒被市場炒作。</td></tr>
+      <tr><td>機會三</td><td><strong>SLB</strong><br>油價高，石油公司拼命鑽井，SLB 就是幫他們鑽的大廠，股價仍低於歷史均值。</td></tr>
+      <tr class="achievable-row"><td>Achievable</td><td class="achievable-text">AI 機房電力需求爆增 → 評估是否切入 AI 數據中心特殊裝修利基（散熱、線路、隔熱），競爭者少、需求成長快；油價高 → 採購進口建材提前鎖量鎖價。</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-number">004</div>
+    <table class="card-table">
+      <tr><td>裝修公司</td><td>建材採購建議提前鎖定供應商報價與數量，避免油價持續高漲帶動運費上升。</td></tr>
+      <tr><td>合約保護</td><td>報價單加入原物料浮動條款，保護你的利潤空間。</td></tr>
+      <tr class="achievable-row"><td>Achievable</td><td class="achievable-text">本月內與廠商洽談「價格保留期」合約；更新進口材料台灣替代品清單；報價模板今週加入浮動條款。</td></tr>
+    </table>
+  </div>
+
+  <div class="footer">
+    <span>📊 Market Insight</span>
+    <span class="cta">Diana Lee · 2026.06.05</span>
+  </div>
+</div>
+
+
+<!-- ══════════ PAGE 3: AI INSIGHT ══════════ -->
+<div id="page-ai" class="page">
+
+  <div class="header">
+    <h1>🤖 AI Insight</h1>
+    <div class="date">Diana Lee © 2026.06.05 · 05:00</div>
+  </div>
+
+  <div class="tags">
+    <span class="tag" style="background:#f0e6ff;border-color:#cc99ff;color:#6600cc;font-weight:600">Claude</span>
+    <span class="tag" style="background:#f0e6ff;border-color:#cc99ff;color:#6600cc;font-weight:600">Gemini</span>
+    <span class="tag">算力</span>
+    <span class="tag">新功能</span>
+  </div>
+
+  <div class="section-title">Today's<br>AI Brief</div>
+
+  <!-- AI 001 -->
+  <div class="card">
+    <div class="card-number">001</div>
+    <table class="card-table">
+      <tr><td>來源</td><td>Anthropic · Claude</td></tr>
+      <tr><td>是什麼</td><td><strong>Claude Opus 4.8 正式發布</strong>（5月28日）</td></tr>
+      <tr><td>白話說明</td><td>Anthropic 把 Claude 升級了。最大的改變是「記憶容量」變大——以前 Claude 一次只能讀一定量的文字，現在可以一口氣處理相當於一本厚書的內容，不需要分段。對你來說，就是未來問它複雜問題或分析大量資料時，它不會「忘記前面說的話」。</td></tr>
+      <tr><td>重要嗎</td><td>這是目前全球排名第一的 AI 模型。微軟和 Google 的產品都在追趕它，但差距仍在。</td></tr>
+      <tr><td>你要留意</td><td>Claude Code（Anthropic 的 AI 寫程式工具）正在快速普及，這對科技股的估值有長期支撐作用。</td></tr>
+      <tr class="achievable-row"><td>Achievable</td><td class="achievable-text">Claude 現在可以一次讀完大量文件。你可以把所有報價單、合約、建材規格表丟給它，讓它幫你整理比較，找出最划算的選項——這件事以前要花你的團隊好幾小時。</td></tr>
+    </table>
+  </div>
+
+  <!-- AI 002 -->
+  <div class="card">
+    <div class="card-number">002</div>
+    <table class="card-table">
+      <tr><td>來源</td><td>Google · Gemini</td></tr>
+      <tr><td>是什麼</td><td><strong>Gemini 3.5 Flash 全面開放 + Antigravity 重啟</strong></td></tr>
+      <tr><td>白話說明</td><td>Google 在開發者大會上推出新版 Gemini——速度是同等 AI 的 4 倍，而且比以前便宜很多。同時重新推出一個叫「Antigravity」的工具，讓多個 AI 同時協作完成複雜任務，像是幫你安排行程、整理資料、寫報告，全部自動完成。開放後用量太大，配額很快被用完，Google 緊急調高上限。</td></tr>
+      <tr><td>重要嗎</td><td>Google 這次明顯是在追趕 Anthropic 和 OpenAI。「速度快又便宜」代表更多中小企業會開始用 AI，AI 普及的速度會加快。</td></tr>
+      <tr><td>你要留意</td><td>Google（Alphabet）股價短期受到競爭壓力，但長期 AI 業務仍是重要支柱。</td></tr>
+      <tr class="achievable-row"><td>Achievable</td><td class="achievable-text">Gemini 的多工協作功能（Antigravity）可以幫你自動整理客戶需求、產生報價草稿、追蹤施工進度——相當於一個不下班的行政助理。而且現在比以前便宜，中小企業完全用得起。</td></tr>
+    </table>
+  </div>
+
+  <!-- AI 003 -->
+  <div class="card">
+    <div class="card-number">003</div>
+    <table class="card-table">
+      <tr><td>來源</td><td>產業趨勢 · 算力</td></tr>
+      <tr><td>是什麼</td><td><strong>AI 用電危機正在加劇</strong></td></tr>
+      <tr><td>白話說明</td><td>每一個 AI 回覆你的問題，背後都有一台伺服器在運算，而這些伺服器非常耗電。Morgan Stanley 預測，到 2028 年光是美國的 AI 機房用電量就會達到 74GW——但現有電網只能供應 25GW，缺口高達 49GW。這個問題沒有人能跳過，電力基礎建設正在成為 AI 產業最大的瓶頸。</td></tr>
+      <tr><td>重要嗎</td><td>非常重要。這就是為什麼 GE Vernova、Eaton 這類「幫電網升級」的公司最近被大量機構投資人關注。</td></tr>
+      <tr><td>你要留意</td><td>這個趨勢還沒被散戶廣泛知道，但已經是機構圈討論最多的 AI 相關投資主題之一。</td></tr>
+      <tr class="achievable-row"><td>Achievable</td><td class="achievable-text">這和你直接關係不大，但說明一件事：AI 的基礎建設成本還在上升，代表 AI 工具的價格短期內不會大幅下降。現在就開始把 AI 工具導入公司流程，比等到「普及之後再說」更有競爭優勢。</td></tr>
+    </table>
+  </div>
+
+  <hr class="section-divider">
+  <div class="section-title">本週<br>大事記</div>
+
+  <div class="reading-card">
+    <div class="reading-number">News · 01</div>
+    <div class="reading-title">Claude Opus 4.8 發布 — Anthropic</div>
+    <div class="reading-source">anthropic.com · 2026.05.28</div>
+    <div class="reading-summary">目前全球最強的 AI 模型正式升級。最關鍵的改變是記憶容量擴大到 100 萬 token，相當於可以一次讀完一整本書，適合處理複雜的長文件分析和程式任務。</div>
+    <div class="reading-keypoints"><ul>
+      <li>SWE-bench 程式能力測試得分 88.6%，業界第一</li>
+      <li>價格維持不變：$5 / $25 per 1M tokens</li>
+      <li>支援平行多工，可同時處理多個子任務</li>
+    </ul></div>
+    <a class="reading-link" href="https://www.anthropic.com/news" target="_blank">閱讀全文 ↗</a>
+  </div>
+
+  <div class="reading-card">
+    <div class="reading-number">News · 02</div>
+    <div class="reading-title">Gemini 3.5 Flash 全面開放 — Google</div>
+    <div class="reading-source">ai.google.dev · 2026.05</div>
+    <div class="reading-summary">Google 推出速度最快的 AI 模型之一，速度達到同等模型的 4 倍，每秒可輸出 289 個字。定價大幅下調，讓更多企業負擔得起，加速 AI 在中小企業的普及。</div>
+    <div class="reading-keypoints"><ul>
+      <li>速度：289 output tokens/秒（同級最快）</li>
+      <li>定價：$1.50 / $9 per 1M tokens</li>
+      <li>開放後配額快速用完，Google 緊急調高上限</li>
+    </ul></div>
+    <a class="reading-link" href="https://ai.google.dev/gemini-api/docs/changelog" target="_blank">閱讀全文 ↗</a>
+  </div>
+
+  <div class="reading-card">
+    <div class="reading-number">News · 03</div>
+    <div class="reading-title">AI 電力缺口分析 — Morgan Stanley</div>
+    <div class="reading-source">morganstanley.com · 2026</div>
+    <div class="reading-summary">Morgan Stanley 最新報告指出 AI 資料中心的用電需求遠超電網供應能力，2028 年缺口將達 49GW。電力基礎建設正在成為整個 AI 產業的核心瓶頸，相關設備公司進入高速成長期。</div>
+    <div class="reading-keypoints"><ul>
+      <li>2028 年美國 AI 機房需電 74GW，現有電網僅能供 25GW</li>
+      <li>GE Vernova、Eaton、Quanta Services 直接受益</li>
+      <li>這個趨勢目前仍是機構投資人比散戶更早知道的資訊</li>
+    </ul></div>
+    <a class="reading-link" href="https://www.morganstanley.com/insights/articles/powering-ai-energy-market-outlook-2026" target="_blank">閱讀全文 ↗</a>
+  </div>
+
+  <hr class="section-divider">
+  <div class="section-title">Insightful<br>Achievable</div>
+
+  <div class="card">
+    <div class="card-number">001</div>
+    <table class="card-table">
+      <tr><td>競爭格局</td><td><strong>入行門檻消失，但執行力的差距在擴大</strong><br>AI 讓任何人能快速生成設計提案和渲染圖，「會設計」不再是護城河。你真正的差異在於：材料判斷力、工班協調、和客戶建立信任的方式——這些 AI 無法取代。</td></tr>
+      <tr><td>客戶行為</td><td><strong>客戶帶著 AI 圖來找你，會越來越常見</strong><br>未來客戶在第一次會議前就有 AI 生成的「理想空間」，你的角色從「提案者」變成「可行性顧問」。建立一套引導客戶從 AI 概念圖回到現實施工的話術，是即將到來的核心競爭力。</td></tr>
+      <tr><td>定價壓力</td><td><strong>中低端市場最先被壓縮</strong><br>簡單翻新案的競爭者門檻已大幅降低。往精品施工、複雜整合、全屋規劃移動，是目前 AI 最難進入的區間，也是你應該集中資源的方向。</td></tr>
+      <tr><td>新市場</td><td><strong>AI 數據中心是新興裝修利基</strong><br>亞太地區正大量興建 AI 機房和科技辦公室，這類空間有特殊的隔熱、散熱、線路規劃需求，一般設計公司不熟悉。競爭者少、需求快速成長，值得評估是否切入。</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-number">002</div>
+    <table class="card-table">
+      <tr><td>工作流程</td><td><strong>你現在的簡報流程可以這樣升級</strong></td></tr>
+      <tr><td>Adobe Firefly</td><td>Adobe 已將 AI 圖像生成整合進 Photoshop 和 Illustrator。你做客戶提案時，可以直接在 Photoshop 裡用文字描述生成空間氛圍圖、材質貼圖、燈光效果——不需要找外部渲染師，提案速度可以快 2-3 倍。</td></tr>
+      <tr><td>Adobe Express</td><td>Adobe Express 現在有 AI 簡報生成功能，可以把你的文字需求自動排版成精美的提案頁面。適合快速做初步提案給客戶確認方向，不需要花時間在版面設計上。</td></tr>
+      <tr><td>Gamma / Canva AI</td><td>如果你的提案是 PDF 或簡報形式，Gamma 可以把你的文字或草稿直接生成一份完整的視覺提案，風格一致、排版專業。適合做初次接案的概念提案，留下更多時間給真正需要你判斷的細節。</td></tr>
+      <tr><td>值得關注</td><td>Adobe 即將推出的 Project Concept 功能，可以根據空間照片自動生成不同風格的改造概念圖。一旦正式發布，你和客戶的第一次會議可以當場出圖——這會改變整個提案流程的節奏。</td></tr>
+    </table>
+  </div>
+
+  <div class="footer">
+    <span>AI Insight</span>
+    <span class="cta">Diana Lee · 2026.06.05</span>
+  </div>
+</div>
+
+
+<script>
+  function switchTab(tab) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => {
+      b.classList.remove('active-wellness', 'active-market', 'active-ai');
+    });
+    document.getElementById('page-' + tab).classList.add('active');
+    const btns = document.querySelectorAll('.tab-btn');
+    if (tab === 'wellness') btns[0].classList.add('active-wellness');
+    if (tab === 'market')   btns[1].classList.add('active-market');
+    if (tab === 'ai')       btns[2].classList.add('active-ai');
+    window.scrollTo(0, 0);
+  }
+
+  const params = new URLSearchParams(window.location.search);
+  const t = params.get('tab');
+  if (['market','ai'].includes(t)) switchTab(t);
+</script>
+
+</body>
+</html>
