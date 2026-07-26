@@ -97,6 +97,25 @@
 
   .section-divider { border: none; border-top: 1px solid #e8e8e8; margin: 48px 0 40px; }
 
+  /* ── WELLNESS DEEP CARD (雙語深度) ── */
+  .wcard { margin-bottom: 40px; padding-bottom: 34px; border-bottom: 1px solid #ececec; }
+  .wcard:last-of-type { border-bottom: none; }
+  .wc-num { font-size: 32px; font-weight: 300; color: #111; letter-spacing: -1px; margin-bottom: 12px; }
+  .wc-title-en { font-size: 16px; font-weight: 800; letter-spacing: -0.2px; line-height: 1.28; text-transform: uppercase; margin-bottom: 5px; }
+  .wc-title-zh { font-size: 16px; font-weight: 700; color: #2a6e00; line-height: 1.4; margin-bottom: 18px; }
+  .wc-seg { margin-bottom: 16px; }
+  .wc-seg-label { display: inline-block; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: #2a6e00; font-weight: 700; background: #edffd0; border: 1px solid #cdec9a; border-radius: 4px; padding: 2px 8px; margin-bottom: 8px; }
+  .wc-en { font-size: 13px; color: #444; line-height: 1.6; margin-bottom: 5px; }
+  .wc-zh { font-size: 14px; color: #111; line-height: 1.72; }
+  .wc-src { font-size: 12px; margin-top: 4px; }
+  .wc-src a { color: #0057ff; text-decoration: none; }
+
+  /* ── BONUS (Diana voice reels) ── */
+  .bonus-card { background: #faf8f2; border: 1px solid #eee4cf; border-radius: 12px; padding: 16px; margin-bottom: 14px; }
+  .bonus-tag { font-size: 10px; color: #b08948; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 9px; font-weight: 700; }
+  .bonus-cover { font-weight: 700; font-size: 15px; margin-bottom: 6px; line-height: 1.35; }
+  .bonus-hook { font-style: italic; color: #333; font-size: 13.5px; line-height: 1.62; }
+
   /* ── TRIGGER BAR ── */
   .trigger-bar { background: #f7f7f7; border-radius: 12px; padding: 16px; margin: 8px 0; }
   .trigger-bar .label { font-size: 11px; color: #999; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; }
@@ -151,100 +170,165 @@
 
   <div class="header">
     <h1>💪🏻 Wellness Content Creator 2.0</h1>
-    <div class="date">Daily Brief — 2026.06.05 · 05:00</div>
+    <div class="date">Daily Brief — 2026.07.26 · 05:00</div>
   </div>
 
   <div class="tags">
-    <span class="tag green">Oura Ring</span>
-    <span class="tag green">AG1</span>
+    <span class="tag green">Creatine</span>
+    <span class="tag green">腸腦軸</span>
+    <span class="tag">VO2 Max</span>
+    <span class="tag">Women's Health</span>
     <span class="tag">Longevity</span>
-    <span class="tag">Bioharmony</span>
   </div>
 
   <div class="section-title">Today's<br>Briefs</div>
 
-  <div class="card">
-    <div class="card-number">001</div>
-    <table class="card-table">
-      <tr><td>Topic</td><td>Oura Ring Knows You Better Than Your Doctor</td></tr>
-      <tr><td>Pillar</td><td><div class="pill-row"><span class="pill green">Sleep</span><span class="pill">HRV</span><span class="pill">Biohacking</span></div></td></tr>
-      <tr><td>Cover</td><td class="cover-text">Your ring sees what your doctor misses.</td></tr>
-      <tr><td>Hook</td><td class="hook-text">"I ignored my HRV dip for three days. On day four, I got sick. Oura saw it coming."</td></tr>
-      <tr><td>Trend</td><td>Brigham and Women's Hospital 2025 年驗證：Oura Ring Gen4 的睡眠分期準確率達 79%，優於 Apple Watch 和 WHOOP；HRV 測量精度業界第一。從消費產品變成臨床研究工具</td></tr>
-      <tr><td>Insight</td><td class="insight-text">HRV 不是數字遊戲——它是你神經系統今天的「準備度報告」。低 HRV 那天，不要做高強度訓練，要恢復</td></tr>
-      <tr><td>Conclusion</td><td>戴上它不是為了炫耀數字，是為了學會「聽懂」身體在說什麼。這才是 Oura 真正的價值。</td></tr>
-      <tr><td>Read</td><td class="resources"><a href="https://ouraring.com/blog/oura-most-accurate-for-hrv-resting-heart-rate/" target="_blank">↗ Oura — Most Accurate Wearable for HRV</a></td></tr>
-    </table>
+  <!-- 001 CREATINE -->
+  <div class="wcard">
+    <div class="wc-num">001</div>
+    <div class="pill-row" style="margin-bottom:14px">
+      <span class="pill green">認知表現</span><span class="pill">Creatine</span><span class="pill">Women</span>
+    </div>
+    <div class="wc-title-en">Creatine isn't a gym supplement — it's fuel for your brain</div>
+    <div class="wc-title-zh">肌酸不是健身品,是大腦的燃料</div>
+
+    <div class="wc-seg">
+      <span class="wc-seg-label">Science · 科學</span>
+      <div class="wc-en">Creatine recharges ATP — your cells' energy currency — within seconds via phosphocreatine, a "fast battery." Neurons lean on it under stress, poor sleep and heavy focus. Supplementing lifts brain phosphocreatine 10–15%.</div>
+      <div class="wc-zh">肌酸透過磷酸肌酸(細胞的「快充電池」)在幾秒內把能量貨幣 ATP 充回來。大腦在高壓、睡不足、專注時特別依賴它;補充能讓腦內磷酸肌酸提升 10–15%。</div>
+    </div>
+
+    <div class="wc-seg">
+      <span class="wc-seg-label">For you · 對你</span>
+      <div class="wc-en">Clearer thinking when you're under-slept; better memory, attention and processing speed under a heavy workload.</div>
+      <div class="wc-zh">睡不夠時思緒更清楚;高工作量下記憶、注意力、反應速度更好——不容易「腦當機」。</div>
+    </div>
+
+    <div class="wc-seg">
+      <span class="wc-seg-label">For women · 對女性</span>
+      <div class="wc-en">Women store 70–80% less creatine than men, and the link to mood and brain energy sharpens around menstruation, pregnancy and menopause — so the upside may be even bigger. 3–5 g/day, safe and cheap.</div>
+      <div class="wc-zh">女性肌酸儲存量比男性低 70–80%,且在月經、懷孕、更年期等荷爾蒙波動期,與情緒和腦能量的關聯更明顯,邊際效益可能更大。每日 3–5g,安全又便宜。</div>
+    </div>
+
+    <div class="wc-src">🔗 <a href="https://www.nutritionaloutlook.com/view/elysium-health-creatine-longevity-system" target="_blank">Elysium CREATINE+ / Nutritional Outlook (2026.06) ↗</a></div>
   </div>
 
-  <div class="card">
-    <div class="card-number">002</div>
-    <table class="card-table">
-      <tr><td>Topic</td><td>AG1 不只是綜合維他命</td></tr>
-      <tr><td>Pillar</td><td><div class="pill-row"><span class="pill green">Gut Health</span><span class="pill">Longevity</span><span class="pill">AG1</span></div></td></tr>
-      <tr><td>Cover</td><td class="cover-text">One scoop. 75 ingredients. The gut is the argument.</td></tr>
-      <tr><td>Hook</td><td class="hook-text">"I used to think greens powder was marketing. Then I saw what it did to my microbiome data."</td></tr>
-      <tr><td>Trend</td><td>2025 年臨床試驗（NCT06564285）顯示：連續 3 個月使用 AG1 後，乳酸桿菌與雙歧桿菌增加超過 10 倍；腸道菌多樣性顯著提升。腸-腦軸成為 2026 年最熱長壽研究領域</td></tr>
-      <tr><td>Insight</td><td class="insight-text">腸道健康不是「不拉肚子」——它決定你的免疫力、情緒穩定、甚至睡眠品質。AG1 的意義在這裡，不在那 75 種成分的清單</td></tr>
-      <tr><td>Conclusion</td><td>不是每個人都需要 AG1，但每個人都需要認真對待自己的腸道。從飲食多樣性開始，補充劑只是加分。</td></tr>
-      <tr><td>Read</td><td class="resources"><a href="https://clinicaltrials.gov/study/NCT06564285" target="_blank">↗ AG1 腸道健康臨床試驗 — ClinicalTrials.gov</a></td></tr>
-    </table>
+  <!-- 002 FERMENTED -->
+  <div class="wcard">
+    <div class="wc-num">002</div>
+    <div class="pill-row" style="margin-bottom:14px">
+      <span class="pill green">代謝智能</span><span class="pill">Gut-Brain</span><span class="pill">Mood</span>
+    </div>
+    <div class="wc-title-en">Two servings of kimchi a day quiets your brain's alarm</div>
+    <div class="wc-title-zh">一天兩份泡菜,把大腦的警報器關小</div>
+
+    <div class="wc-seg">
+      <span class="wc-seg-label">Science · 科學</span>
+      <div class="wc-en">Your gut and brain talk over the "gut-brain axis." Live-culture foods (kimchi, kefir, miso, kombucha) raise microbial diversity, lower inflammation, and boost GABA — the neurotransmitter that hits the brakes on your brain — calming the amygdala, your fear-and-threat center.</div>
+      <div class="wc-zh">腸道和大腦透過「腸腦軸」對話。發酵食物(泡菜、克菲爾、味噌、康普茶)提升腸道菌多樣性、降發炎,並促進 GABA(讓大腦踩剎車的神經傳導物質),安撫杏仁核——你的恐懼與威脅中樞。</div>
+    </div>
+
+    <div class="wc-seg">
+      <span class="wc-seg-label">For you · 對你</span>
+      <div class="wc-en">A food lever for mood and stress, not just digestion. Aim for 1–2 servings daily (4–6 while recovering from antibiotics).</div>
+      <div class="wc-zh">這是用食物調情緒與壓力的槓桿,不只助消化。每天 1–2 份(抗生素後恢復期 4–6 份)。</div>
+    </div>
+
+    <div class="wc-src">🔗 <a href="https://www.naturalnews.com/2026-05-19-fermented-foods-ancient-tradition-validated-by-modern-science.html" target="_blank">Fermented foods & mood / Stanford (2026.05) ↗</a></div>
   </div>
 
-  <div class="card">
-    <div class="card-number">003</div>
-    <table class="card-table">
-      <tr><td>Topic</td><td>Bryan Johnson 從 111 種補充劑降到 30 種</td></tr>
-      <tr><td>Pillar</td><td><div class="pill-row"><span class="pill green">Bioharmony</span><span class="pill">Longevity</span></div></td></tr>
-      <tr><td>Cover</td><td class="cover-text">The most optimized man on earth just simplified.</td></tr>
-      <tr><td>Hook</td><td class="hook-text">"If Bryan Johnson — who spent $2M/year on his body — just cut 81 supplements, what does that tell you?"</td></tr>
-      <tr><td>Trend</td><td>2026 年最大 wellness 反轉：從「越多越好」走向「精準最小化」。Global Wellness Summit 定義新趨勢：Bioharmony — 不是優化身體，是與身體和諧共處。Johnson 的 Blueprint 協議 2026 年大幅精簡，回歸睡眠、飲食、運動三核心</td></tr>
-      <tr><td>Insight</td><td class="insight-text">真正的長壽不是堆疊更多介入——是找到最少的事情，做到完美。複雜的系統最容易崩潰</td></tr>
-      <tr><td>Conclusion</td><td>你不需要 111 種補充劑。你需要睡好、動夠、吃真實的食物——然後只加 1-2 種你真的缺的。</td></tr>
-      <tr><td>Read</td><td class="resources"><a href="https://blueprint.bryanjohnson.com" target="_blank">↗ Bryan Johnson — Blueprint Protocol 2026</a></td></tr>
-    </table>
+  <!-- 003 VO2 MAX -->
+  <div class="wcard">
+    <div class="wc-num">003</div>
+    <div class="pill-row" style="margin-bottom:14px">
+      <span class="pill green">長壽基礎</span><span class="pill">VO2 Max</span><span class="pill">Performance</span>
+    </div>
+    <div class="wc-title-en">One number predicts your death better than cholesterol</div>
+    <div class="wc-title-zh">有一個數字比膽固醇更能預測你哪天死</div>
+
+    <div class="wc-seg">
+      <span class="wc-seg-label">Science · 科學</span>
+      <div class="wc-en">VO2 max is the most oxygen your body can use at peak effort — a single score for your whole engine: heart, lungs, blood, vessels and mitochondria. Large studies (JAMA 2018) found the least-fit face several-fold higher mortality — a bigger risk than smoking or diabetes.</div>
+      <div class="wc-zh">VO2 max 是你極限時每分鐘能利用的最大氧氣量——是你整台引擎(心、肺、血液、血管、粒線體)的總分。大型研究(JAMA 2018)發現體能最差的一群死亡風險高出數倍,甚至大於抽菸與糖尿病。</div>
+    </div>
+
+    <div class="wc-seg">
+      <span class="wc-seg-label">For you · 對你</span>
+      <div class="wc-en">A high VO2 max = more physiological reserve to survive illness, injury and aging. Build it with Attia's 4×4: 4–6 rounds of 3–4 min at 90–95% max heart rate, on a Zone 2 base.</div>
+      <div class="wc-zh">VO2 max 高 = 更多生理儲備,生病、受傷、老化時更撐得住。用 Attia 的 4×4:4–6 組、每組 3–4 分鐘衝到 90–95% 最大心率,搭 Zone 2 打底。</div>
+    </div>
+
+    <div class="wc-src">🔗 <a href="https://www.nad.com/news/dr-peter-attias-vo2-max-protocol-and-heart-health-supplements-for-longevity" target="_blank">Attia VO2 max protocol / NAD.com (2026) ↗</a></div>
+  </div>
+
+  <!-- 004 CYCLE & COGNITION -->
+  <div class="wcard">
+    <div class="wc-num">004</div>
+    <div class="pill-row" style="margin-bottom:14px">
+      <span class="pill green">女性生理</span><span class="pill">Menstrual Cycle</span><span class="pill">Cognition</span>
+    </div>
+    <div class="wc-title-en">Your memory peaks right before ovulation</div>
+    <div class="wc-title-zh">妳的記憶力在排卵前達到高峰</div>
+
+    <div class="wc-seg">
+      <span class="wc-seg-label">Science · 科學</span>
+      <div class="wc-en">A 2026 study tracking cognition across the menstrual cycle found memory and attention peak in the late follicular phase — when estrogen, which strengthens neural connections, is at its highest.</div>
+      <div class="wc-zh">一項 2026 研究追蹤月經週期的認知變化,發現記憶與注意力在濾泡期後段(雌激素高峰)表現最好——雌激素被認為能強化神經連結。</div>
+    </div>
+
+    <div class="wc-seg">
+      <span class="wc-seg-label">For women · 對女性</span>
+      <div class="wc-en">Where you can, aim your hardest cognitive work — big pitches, learning, decisions — at this window, and schedule recovery and low-stakes tasks premenstrually. This is cycle syncing's most evidence-backed piece.</div>
+      <div class="wc-zh">盡量把最耗腦的事(重要簡報、學習、決策)排進這個高峰段,低谷期(經前)安排恢復性、低壓的任務。這是 cycle syncing 最有實證的一塊。</div>
+    </div>
+
+    <div class="wc-src">🔗 <a href="https://www.mdpi.com/2079-7737/14/8/1060" target="_blank">Menstrual cycle & cognition / MDPI Biology (2026) ↗</a></div>
+  </div>
+
+  <!-- 005 UROLITHIN A -->
+  <div class="wcard">
+    <div class="wc-num">005</div>
+    <div class="pill-row" style="margin-bottom:14px">
+      <span class="pill green">恢復與生物優化</span><span class="pill">Urolithin A</span><span class="pill">Mitochondria</span>
+    </div>
+    <div class="wc-title-en">The compound that swaps out your cells' dead batteries</div>
+    <div class="wc-title-zh">幫細胞換掉壞電池的那個成分</div>
+
+    <div class="wc-seg">
+      <span class="wc-seg-label">Science · 科學</span>
+      <div class="wc-en">Urolithin A isn't something you eat directly — your gut bacteria make it from polyphenols in pomegranate, walnuts and berries. But only ~40% of people carry the right bacteria to produce enough. It switches on "mitophagy" — recycling worn-out mitochondria (your cells' power plants) for fresh ones.</div>
+      <div class="wc-zh">Urolithin A 不是你直接吃到的——腸道細菌把石榴、核桃、莓果裡的多酚分解後才產生。但只有約 40% 的人有對的菌能製造足量。它啟動「粒線體自噬(mitophagy)」——回收老舊粒線體(細胞的發電廠)、換上新的。</div>
+    </div>
+
+    <div class="wc-seg">
+      <span class="wc-seg-label">For you · 對你</span>
+      <div class="wc-en">A supplement route to muscle strength, endurance and cellular aging — relevant if you sit a lot and want to defend your energy. A 2026 review links it to better strength and fitness.</div>
+      <div class="wc-zh">一條主打肌力、耐力與細胞抗老的補充路徑——久坐、想守住體能的人特別相關。2026 年一篇回顧連結它與肌力和體能的改善。</div>
+    </div>
+
+    <div class="wc-src">🔗 <a href="https://www.sciencedaily.com/releases/2026/05/260504023828.htm" target="_blank">Mitochondrial longevity supplements / ScienceDaily (2026.05) ↗</a></div>
   </div>
 
   <hr class="section-divider">
-  <div class="section-title">Reading<br>List</div>
+  <div class="section-title">Bonus ·<br>Reels 靈感</div>
+  <p style="font-size:12px;color:#999;margin:-20px 0 24px;letter-spacing:0.3px">用 Diana 的聲音把今天的知識變成腳本鉤子 · voice: @coolmumdianna</p>
 
-  <div class="reading-card">
-    <div class="reading-number">Read · 01</div>
-    <div class="reading-title">Oura Ring Gen4 睡眠準確度驗證 — Scientific Reports</div>
-    <div class="reading-source">nature.com · 2025</div>
-    <div class="reading-summary">Nature 旗下 Scientific Reports 發表獨立研究：Oura Ring Gen4 在 HRV 和靜息心率測量上優於 WHOOP、Garmin 和 Polar。睡眠分期演算法 OSSA 2.0 準確率達 79%，比 Apple Watch 高出近 20%。</div>
-    <div class="reading-keypoints"><ul>
-      <li>HRV 精度：Oura > WHOOP > Garmin > Apple Watch</li>
-      <li>睡眠分期 79% 準確率，接近醫院多導睡眠圖儀</li>
-      <li>新加坡國立大學與 Brigham and Women's Hospital 雙重驗證</li>
-    </ul></div>
-    <a class="reading-link" href="https://www.nature.com/articles/s41598-025-93774-z" target="_blank">閱讀全文 ↗</a>
+  <div class="bonus-card">
+    <div class="bonus-tag">Reel 01 · 對應 001 肌酸</div>
+    <div class="bonus-cover">肌酸不是男生的东西 / Creatine isn't a bro supplement</div>
+    <div class="bonus-hook">"Every woman I know takes collagen. Almost none take the one thing that actually changes her brain. 我们补错东西了。"</div>
   </div>
 
-  <div class="reading-card">
-    <div class="reading-number">Read · 02</div>
-    <div class="reading-title">AG1 腸道菌群研究 2025 — ClinicalTrials.gov</div>
-    <div class="reading-source">clinicaltrials.gov · 2025</div>
-    <div class="reading-summary">2025 年完成的臨床試驗追蹤 AG1 對腸道健康的影響。連續 3 個月使用後，受試者腸道有益菌（乳酸桿菌、雙歧桿菌）增加超過 10 倍，整體微生物多樣性顯著提升。</div>
-    <div class="reading-keypoints"><ul>
-      <li>有益菌增加 10 倍以上（3 個月後）</li>
-      <li>腸道菌多樣性改善，與長壽指標正相關</li>
-      <li>注意：為公司贊助研究，需等待獨立複製驗證</li>
-    </ul></div>
-    <a class="reading-link" href="https://clinicaltrials.gov/study/NCT06564285" target="_blank">閱讀全文 ↗</a>
+  <div class="bonus-card">
+    <div class="bonus-tag">Reel 02 · 對應 002 發酵食物</div>
+    <div class="bonus-cover">焦虑住在你的肠子里 / Your anxiety lives in your gut</div>
+    <div class="bonus-hook">"I fixed my 3am spiraling with… kimchi. 不是冥想,是我的肠道菌。Let me explain."</div>
   </div>
 
-  <div class="reading-card">
-    <div class="reading-number">Read · 03</div>
-    <div class="reading-title">2026 Wellness Trends: From Biohacking to Bioharmony</div>
-    <div class="reading-source">globalwellnessinstitute.org · 2026</div>
-    <div class="reading-summary">Global Wellness Summit 發布 2026 年十大趨勢：最大轉變是從「優化身體」走向「與身體和諧」。意義優於測量、感受優於數據、連結優於獨自追蹤——wellness 正在人性化。</div>
-    <div class="reading-keypoints"><ul>
-      <li>長壽從小眾 biohacker 走向主流生活方式</li>
-      <li>「反優化」運動崛起：質疑過度追蹤的心理代價</li>
-      <li>晝夜節律飲食、限時進食成為主流建議</li>
-    </ul></div>
-    <a class="reading-link" href="https://globalwellnessinstitute.org/press-room/press-releases/global-wellness-summit-releases-10-wellness-trends-for-2026/" target="_blank">閱讀全文 ↗</a>
+  <div class="bonus-card">
+    <div class="bonus-tag">Reel 03 · 對應 004 週期</div>
+    <div class="bonus-cover">别在经前逼自己 / Stop forcing yourself premenstrually</div>
+    <div class="bonus-hook">"You're not lazy that week. 妳不是懒。Your brain is literally running on less estrogen."</div>
   </div>
 
   <div class="footer">
@@ -259,7 +343,7 @@
 
   <div class="header">
     <h1>📊 Market Insight</h1>
-    <div class="date">Diana Lee © 2026.06.05 · 05:00</div>
+    <div class="date">Diana Lee © 2026.07.26 · 05:00</div>
   </div>
 
   <div class="tags">
@@ -275,8 +359,8 @@
   <div class="card">
     <div class="card-number">001</div>
     <table class="card-table">
-      <tr><td>方向</td><td><div class="pill-row"><span class="pill red">偏空 ▼ -0.94%</span></div></td></tr>
-      <tr><td>故事</td><td>上週大盤剛創歷史新高，大量投資人選擇在高點把獲利落袋為安。加上晶片大廠 Broadcom 業績雖亮眼，卻沒有拉高全年 AI 預測——現在的市場不是「好」就夠，要「超乎想像的好」才行。賣壓從科技股蔓延整個大盤。</td></tr>
+      <tr><td>方向</td><td><div class="pill-row"><span class="pill red">偏空 ▼ 兩週連跌</span></div></td></tr>
+      <tr><td>故事</td><td>科技股連續兩週承壓。上週能源與原物料領漲，但科技與成長股遭大量賣壓，Alphabet 與晶片股尤其疲軟。關稅上路、財報與地緣風險交織，資金從高估值科技股撤向防禦性資產。QQQ 從 7 月高點約 $748 回落到 $684，兩週連跌讓看空聲音重回主流。</td></tr>
       <tr><td>你要做什麼</td><td class="action-text">不動，繼續等。</td></tr>
       <tr class="achievable-row"><td>Achievable</td><td class="achievable-text">市場情緒悲觀 → 延後非緊急支出決策，不擴張；客戶付款條件收緊，縮短帳期；現金為王。</td></tr>
     </table>
@@ -288,8 +372,8 @@
       <tr>
         <td>QQQ 今日</td>
         <td>
-          <div class="current-price">$739.94</div>
-          <div class="price-change down">▼ -$6.88 今日</div>
+          <div class="current-price">$684.23</div>
+          <div class="price-change down">▼ 自 7 月高點回落 · Jul 24 收盤</div>
           <span class="safe-badge">✓ 安全區間</span>
         </td>
       </tr>
@@ -300,19 +384,19 @@
             <div class="label">基準 — 近期高點 $746 · 低點 $511.93（2025年5月30日）· 區間 $234 · 中間值 $629</div>
             <div class="trigger-row">
               <span>⬇ <span class="price">$699</span></span>
-              <span style="color:#555;font-size:12px">距今 -5.5%　開始留意，小量試水</span>
+              <span style="color:#555;font-size:12px">已跌破　已進入觀察區</span>
             </div>
             <div class="trigger-row">
               <span>⬇ <span class="price">$669</span></span>
-              <span style="color:#555;font-size:12px">距今 -9.6%　分批開始買進</span>
+              <span style="color:#555;font-size:12px">距今 -2.2%　分批開始買進</span>
             </div>
             <div class="trigger-row">
               <span>⬇ <span class="price">$629</span> <span style="font-size:11px;color:#aaa">高低中間值</span></span>
-              <span style="color:#003d99;font-size:12px;font-weight:600">距今 -15%　加快節奏</span>
+              <span style="color:#003d99;font-size:12px;font-weight:600">距今 -8.1%　加快節奏</span>
             </div>
             <div class="trigger-row">
               <span>⬇ <span class="price">$511</span> <span style="font-size:11px;color:#aaa">2025.05 低點</span></span>
-              <span style="color:#cc0000;font-size:12px;font-weight:600">距今 -30.8%　全力出手</span>
+              <span style="color:#cc0000;font-size:12px;font-weight:600">距今 -25.2%　全力出手</span>
             </div>
           </div>
         </td>
@@ -328,7 +412,7 @@
             </div>
             <div class="trigger-row">
               <span>目前含報酬</span>
-              <span style="color:#2a6e00;font-weight:700">+$284.34（+62.6%）</span>
+              <span style="color:#2a6e00;font-weight:700">+$228.63（+50.2%）</span>
             </div>
             <div class="trigger-row">
               <span>即使跌到 2025 低點 $511</span>
@@ -362,7 +446,7 @@
 
   <div class="footer">
     <span>📊 Market Insight</span>
-    <span class="cta">Diana Lee · 2026.06.05</span>
+    <span class="cta">Diana Lee · 2026.07.26</span>
   </div>
 </div>
 
@@ -372,7 +456,7 @@
 
   <div class="header">
     <h1>🤖 AI Insight</h1>
-    <div class="date">Diana Lee © 2026.06.05 · 05:00</div>
+    <div class="date">Diana Lee © 2026.07.26 · 05:00</div>
   </div>
 
   <div class="tags">
@@ -389,9 +473,9 @@
     <div class="card-number">001</div>
     <table class="card-table">
       <tr><td>來源</td><td>Anthropic · Claude</td></tr>
-      <tr><td>是什麼</td><td><strong>Claude Opus 4.8 正式發布</strong>（5月28日）</td></tr>
-      <tr><td>白話說明</td><td>Anthropic 把 Claude 升級了。最大的改變是「記憶容量」變大——以前 Claude 一次只能讀一定量的文字，現在可以一口氣處理相當於一本厚書的內容，不需要分段。對你來說，就是未來問它複雜問題或分析大量資料時，它不會「忘記前面說的話」。</td></tr>
-      <tr><td>重要嗎</td><td>這是目前全球排名第一的 AI 模型。微軟和 Google 的產品都在追趕它，但差距仍在。</td></tr>
+      <tr><td>是什麼</td><td><strong>Claude Opus 5 正式發布</strong>（7月24日）</td></tr>
+      <tr><td>白話說明</td><td>Anthropic 昨天（7/24）推出新一代 Claude Opus 5，一發布就登上 Artificial Analysis 智慧指數第一（61 分）、Agentic（自主完成任務）指數 55.3，而且價格只要 $5 / $25 per 1M tokens——是前一代旗艦的一半。白話：目前最聰明的 AI，還同時變便宜了。</td></tr>
+      <tr><td>重要嗎</td><td>這是目前綜合能力全球第一的 AI 模型。降價會加速企業導入，AI 洗牌又進一步。</td></tr>
       <tr><td>你要留意</td><td>Claude Code（Anthropic 的 AI 寫程式工具）正在快速普及，這對科技股的估值有長期支撐作用。</td></tr>
       <tr class="achievable-row"><td>Achievable</td><td class="achievable-text">Claude 現在可以一次讀完大量文件。你可以把所有報價單、合約、建材規格表丟給它，讓它幫你整理比較，找出最划算的選項——這件事以前要花你的團隊好幾小時。</td></tr>
     </table>
@@ -401,12 +485,12 @@
   <div class="card">
     <div class="card-number">002</div>
     <table class="card-table">
-      <tr><td>來源</td><td>Google · Gemini</td></tr>
-      <tr><td>是什麼</td><td><strong>Gemini 3.5 Flash 全面開放 + Antigravity 重啟</strong></td></tr>
-      <tr><td>白話說明</td><td>Google 在開發者大會上推出新版 Gemini——速度是同等 AI 的 4 倍，而且比以前便宜很多。同時重新推出一個叫「Antigravity」的工具，讓多個 AI 同時協作完成複雜任務，像是幫你安排行程、整理資料、寫報告，全部自動完成。開放後用量太大，配額很快被用完，Google 緊急調高上限。</td></tr>
-      <tr><td>重要嗎</td><td>Google 這次明顯是在追趕 Anthropic 和 OpenAI。「速度快又便宜」代表更多中小企業會開始用 AI，AI 普及的速度會加快。</td></tr>
-      <tr><td>你要留意</td><td>Google（Alphabet）股價短期受到競爭壓力，但長期 AI 業務仍是重要支柱。</td></tr>
-      <tr class="achievable-row"><td>Achievable</td><td class="achievable-text">Gemini 的多工協作功能（Antigravity）可以幫你自動整理客戶需求、產生報價草稿、追蹤施工進度——相當於一個不下班的行政助理。而且現在比以前便宜，中小企業完全用得起。</td></tr>
+      <tr><td>來源</td><td>OpenAI · Google</td></tr>
+      <tr><td>是什麼</td><td><strong>GPT-5.6 成 ChatGPT 新預設；Google Gemini 旗艦延期</strong></td></tr>
+      <tr><td>白話說明</td><td>OpenAI 的 GPT-5.6 家族（Sol / Terra / Luna）於 7/9 全面上線、成為 ChatGPT 新預設；Google 7/21 推出更快的 Gemini 3.6 Flash，但坦承旗艦模型 3.5 Pro 在程式與長任務推理不如預期，延後數月。三大廠每幾週就洗牌一次。</td></tr>
+      <tr><td>重要嗎</td><td>模型迭代極快，「更快更便宜」讓中小企業更用得起 AI。啟示：別把工作流程綁死在單一家。</td></tr>
+      <tr><td>你要留意</td><td>選 AI 工具以能力／價格隨時換，保持彈性，別被單一平台鎖住。</td></tr>
+      <tr class="achievable-row"><td>Achievable</td><td class="achievable-text">用 ChatGPT／Gemini 的自動化功能幫你整理客戶需求、產生報價草稿、追蹤施工進度——相當於一個不下班的行政助理。價格持續下降，中小企業完全用得起。</td></tr>
     </table>
   </div>
 
@@ -428,28 +512,28 @@
 
   <div class="reading-card">
     <div class="reading-number">News · 01</div>
-    <div class="reading-title">Claude Opus 4.8 發布 — Anthropic</div>
-    <div class="reading-source">anthropic.com · 2026.05.28</div>
-    <div class="reading-summary">目前全球最強的 AI 模型正式升級。最關鍵的改變是記憶容量擴大到 100 萬 token，相當於可以一次讀完一整本書，適合處理複雜的長文件分析和程式任務。</div>
+    <div class="reading-title">Claude Opus 5 發布 — Anthropic</div>
+    <div class="reading-source">anthropic.com · 2026.07.24</div>
+    <div class="reading-summary">Anthropic 新一代旗艦模型，發布即登上 Artificial Analysis 智慧指數第一（61 分），綜合能力全球最強，且價格砍半。</div>
     <div class="reading-keypoints"><ul>
-      <li>SWE-bench 程式能力測試得分 88.6%，業界第一</li>
-      <li>價格維持不變：$5 / $25 per 1M tokens</li>
-      <li>支援平行多工，可同時處理多個子任務</li>
+      <li>智慧指數 61、Agentic 指數 55.3，均為業界第一</li>
+      <li>價格 $5 / $25 per 1M tokens，是前代旗艦的一半</li>
+      <li>自主完成多步驟任務（agentic）能力大幅提升</li>
     </ul></div>
     <a class="reading-link" href="https://www.anthropic.com/news" target="_blank">閱讀全文 ↗</a>
   </div>
 
   <div class="reading-card">
     <div class="reading-number">News · 02</div>
-    <div class="reading-title">Gemini 3.5 Flash 全面開放 — Google</div>
-    <div class="reading-source">ai.google.dev · 2026.05</div>
-    <div class="reading-summary">Google 推出速度最快的 AI 模型之一，速度達到同等模型的 4 倍，每秒可輸出 289 個字。定價大幅下調，讓更多企業負擔得起，加速 AI 在中小企業的普及。</div>
+    <div class="reading-title">GPT-5.6 成 ChatGPT 新預設 — OpenAI</div>
+    <div class="reading-source">openai.com · 2026.07.09</div>
+    <div class="reading-summary">OpenAI 的 GPT-5.6 家族（Sol / Terra / Luna）全面上線並成為 ChatGPT 新預設模型；同期 Google 旗艦 Gemini 3.5 Pro 因表現不如預期延後數月。</div>
     <div class="reading-keypoints"><ul>
-      <li>速度：289 output tokens/秒（同級最快）</li>
-      <li>定價：$1.50 / $9 per 1M tokens</li>
-      <li>開放後配額快速用完，Google 緊急調高上限</li>
+      <li>GPT-5.6 三款分工（Sol / Terra / Luna），7/9 全面開放</li>
+      <li>Google 推 Gemini 3.6 Flash（7/21），但旗艦 3.5 Pro 延期</li>
+      <li>Meta 推 Muse Spark 1.1：可操作電腦的 agentic 模型</li>
     </ul></div>
-    <a class="reading-link" href="https://ai.google.dev/gemini-api/docs/changelog" target="_blank">閱讀全文 ↗</a>
+    <a class="reading-link" href="https://llm-stats.com/ai-news" target="_blank">閱讀全文 ↗</a>
   </div>
 
   <div class="reading-card">
@@ -491,7 +575,7 @@
 
   <div class="footer">
     <span>AI Insight</span>
-    <span class="cta">Diana Lee · 2026.06.05</span>
+    <span class="cta">Diana Lee · 2026.07.26</span>
   </div>
 </div>
 
