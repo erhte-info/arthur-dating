@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Diana Lee — Daily Brief</title>
+<title>Daily Brief</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
@@ -16,46 +16,11 @@
   }
 
   /* ── TAB NAV ── */
-  .tab-nav {
-    position: sticky;
-    top: 0;
-    background: #fff;
-    border-bottom: 1px solid #e8e8e8;
-    display: flex;
-    z-index: 100;
-  }
-  .tab-btn {
-    flex: 1;
-    padding: 16px 12px;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.3px;
-    color: #aaa;
-    background: none;
-    border: none;
-    cursor: pointer;
-    border-bottom: 2px solid transparent;
-    transition: all 0.2s;
-    text-align: center;
-  }
-  .tab-btn.active-wellness {
-    color: #2a6e00;
-    border-bottom: 2px solid #d4f080;
-  }
-  .tab-btn.active-market {
-    color: #003d99;
-    border-bottom: 2px solid #90b8ff;
-  }
-  .tab-btn.active-ai {
-    color: #6600cc;
-    border-bottom: 2px solid #cc99ff;
-  }
-  .tab-btn.active-achievable {
-    color: #111;
-    border-bottom: 2px solid #111;
-    font-weight: 700;
-  }
-  .tab-btn span { display: none; }
+  .tab-nav { position: sticky; top: 0; background: #fff; border-bottom: 1px solid #e8e8e8; display: flex; z-index: 100; }
+  .tab-btn { flex: 1; padding: 16px 12px; font-size: 12px; font-weight: 600; letter-spacing: 0.3px; color: #aaa; background: none; border: none; cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.2s; text-align: center; }
+  .tab-btn.active-wellness { color: #2a6e00; border-bottom: 2px solid #d4f080; }
+  .tab-btn.active-market { color: #003d99; border-bottom: 2px solid #90b8ff; }
+  .tab-btn.active-ai { color: #6600cc; border-bottom: 2px solid #cc99ff; }
 
   /* ── PAGES ── */
   .page { display: none; padding: 28px 20px 60px; }
@@ -64,104 +29,83 @@
   /* ── SHARED ── */
   .header h1 { font-size: 22px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 4px; }
   .header .date { font-size: 13px; color: #888; letter-spacing: 0.3px; }
-
   .tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 32px; }
   .tag { border: 1px solid #ccc; border-radius: 20px; padding: 4px 12px; font-size: 12px; color: #555; }
   .tag.green { background: #d4f080; color: #111; border-color: #d4f080; font-weight: 600; }
   .tag.blue { background: #d0e8ff; color: #003d99; border-color: #a0c8ff; font-weight: 600; }
-
+  .tag.purple { background: #f0e6ff; border-color: #cc99ff; color: #6600cc; font-weight: 600; }
   .section-title { font-size: 30px; font-weight: 700; line-height: 1.15; margin-bottom: 32px; letter-spacing: -1px; }
-
-  .card { margin-bottom: 44px; }
-  .card-number { font-size: 32px; font-weight: 300; color: #111; margin-bottom: 12px; letter-spacing: -1px; }
-  .card-table { width: 100%; border-collapse: collapse; }
-  .card-table tr { border-top: 1px solid #e8e8e8; }
-  .card-table tr:last-child { border-bottom: 1px solid #e8e8e8; }
-  .card-table td { padding: 10px 0; vertical-align: top; line-height: 1.55; }
-  .card-table td:first-child {
-    color: #999; font-size: 11px; width: 82px; padding-right: 14px;
-    white-space: nowrap; text-transform: uppercase; letter-spacing: 0.5px; padding-top: 12px;
-  }
-  .card-table td:last-child { color: #111; font-size: 14px; }
-  .cover-text { font-weight: 700; font-size: 15px; }
-  .hook-text { font-style: italic; color: #333; }
-  .insight-text { color: #2a6e00; font-weight: 500; }
-  .action-text { color: #888; font-style: italic; }
-  .resources a { display: block; color: #0057ff; text-decoration: none; font-size: 13px; margin-bottom: 4px; }
-
+  .section-divider { border: none; border-top: 1px solid #e8e8e8; margin: 48px 0 40px; }
   .pill-row { display: flex; gap: 6px; flex-wrap: wrap; }
   .pill { background: #f4f4f4; border: 1px solid #e0e0e0; border-radius: 20px; padding: 3px 10px; font-size: 11px; color: #555; }
   .pill.green { background: #edffd0; border-color: #aad860; color: #2a6e00; font-weight: 600; }
-  .pill.blue { background: #e0eeff; border-color: #90b8ff; color: #003d99; font-weight: 600; }
   .pill.red { background: #fff0f0; border-color: #ffb0b0; color: #990000; font-weight: 600; }
+  .footer { margin-top: 48px; padding-top: 18px; border-top: 1px solid #e8e8e8; font-size: 12px; color: #aaa; display: flex; justify-content: space-between; align-items: center; }
+  .footer .cta { color: #0057ff; font-size: 12px; }
 
-  .section-divider { border: none; border-top: 1px solid #e8e8e8; margin: 48px 0 40px; }
-
-  /* ── WELLNESS DEEP CARD (雙語深度) ── */
+  /* ── WELLNESS DEEP CARD ── */
   .wcard { margin-bottom: 40px; padding-bottom: 34px; border-bottom: 1px solid #ececec; }
   .wcard:last-of-type { border-bottom: none; }
-  .wc-num { font-size: 32px; font-weight: 300; color: #111; letter-spacing: -1px; margin-bottom: 12px; }
+  .wc-ico { width: 46px; height: 46px; border-radius: 12px; background: #edffd0; display: flex; align-items: center; justify-content: center; font-size: 25px; margin-bottom: 12px; }
   .wc-title-en { font-size: 16px; font-weight: 800; letter-spacing: -0.2px; line-height: 1.28; text-transform: uppercase; margin-bottom: 5px; }
-  .wc-title-zh { font-size: 16px; font-weight: 700; color: #2a6e00; line-height: 1.4; margin-bottom: 18px; }
-  .wc-seg { margin-bottom: 16px; }
-  .wc-seg-label { display: inline-block; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: #2a6e00; font-weight: 700; background: #edffd0; border: 1px solid #cdec9a; border-radius: 4px; padding: 2px 8px; margin-bottom: 8px; }
-  .wc-en { font-size: 13px; color: #444; line-height: 1.6; margin-bottom: 5px; }
+  .wc-title-zh { font-size: 16px; font-weight: 700; color: #2a6e00; line-height: 1.4; margin-bottom: 16px; }
+  .wc-seg { margin-bottom: 15px; }
+  .wc-seg-label { display: inline-block; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: #2a6e00; font-weight: 700; background: #edffd0; border: 1px solid #cdec9a; border-radius: 4px; padding: 2px 8px; margin-bottom: 7px; }
+  .wc-seg-label.warn { color: #99631a; background: #fff6e5; border-color: #f0d9a8; }
+  .wc-en { font-size: 13px; color: #555; line-height: 1.58; margin-bottom: 5px; }
   .wc-zh { font-size: 14px; color: #111; line-height: 1.72; }
-  .wc-src { font-size: 12px; margin-top: 4px; }
+  .wc-src { font-size: 12px; margin-top: 6px; }
   .wc-src a { color: #0057ff; text-decoration: none; }
 
-  /* ── BONUS (Diana voice reels) ── */
+  /* ── BONUS (Diana voice) ── */
   .bonus-card { background: #faf8f2; border: 1px solid #eee4cf; border-radius: 12px; padding: 16px; margin-bottom: 14px; }
   .bonus-tag { font-size: 10px; color: #b08948; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 9px; font-weight: 700; }
   .bonus-cover { font-weight: 700; font-size: 15px; margin-bottom: 6px; line-height: 1.35; }
   .bonus-hook { font-style: italic; color: #333; font-size: 13.5px; line-height: 1.62; }
 
+  /* ── MARKET ── */
+  .mk-lead { font-size: 16px; font-weight: 700; line-height: 1.55; margin-bottom: 18px; background: #f4f8ff; border-left: 3px solid #90b8ff; border-radius: 0 8px 8px 0; padding: 14px 14px; }
+  .mk-block { margin-bottom: 18px; }
+  .mk-label { display: inline-block; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: #003d99; font-weight: 700; background: #e0eeff; border: 1px solid #90b8ff; border-radius: 4px; padding: 2px 8px; margin-bottom: 8px; }
+  .mk-body { font-size: 14px; line-height: 1.75; color: #111; }
+  .mk-body b { color: #003d99; }
+  .mk-body ul { list-style: none; padding: 0; margin: 6px 0; }
+  .mk-body li { padding: 5px 0 5px 16px; position: relative; line-height: 1.6; border-bottom: 1px solid #f0f0f0; }
+  .mk-body li::before { content: '▸'; position: absolute; left: 0; color: #90b8ff; }
+
   /* ── TRIGGER BAR ── */
-  .trigger-bar { background: #f7f7f7; border-radius: 12px; padding: 16px; margin: 8px 0; }
+  .trigger-bar { background: #f7f7f7; border-radius: 12px; padding: 16px; margin: 8px 0 20px; }
   .trigger-bar .label { font-size: 11px; color: #999; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; }
   .trigger-row { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; border-bottom: 1px solid #ebebeb; font-size: 13px; }
   .trigger-row:last-child { border-bottom: none; }
   .trigger-row .price { font-weight: 700; }
-  .trigger-row .action { color: #888; font-size: 12px; }
   .current-price { font-size: 28px; font-weight: 700; letter-spacing: -1px; margin-bottom: 4px; }
   .price-change.down { color: #cc0000; font-size: 13px; }
   .safe-badge { display: inline-block; background: #edffd0; color: #2a6e00; border: 1px solid #aad860; border-radius: 20px; padding: 3px 10px; font-size: 11px; font-weight: 600; margin-top: 6px; }
+  .mk-sub { font-size: 11px; color: #999; text-transform: uppercase; letter-spacing: 0.8px; margin: 4px 0 6px; }
 
-  /* ── READING LIST ── */
-  .reading-card { margin-bottom: 36px; }
-  .reading-number { font-size: 12px; color: #aaa; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 8px; }
-  .reading-title { font-size: 17px; font-weight: 700; line-height: 1.3; margin-bottom: 4px; letter-spacing: -0.3px; }
-  .reading-source { font-size: 11px; color: #aaa; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }
-  .reading-summary { font-size: 14px; color: #333; line-height: 1.65; margin-bottom: 12px; }
-  .reading-keypoints { margin-bottom: 12px; }
-  .reading-keypoints ul { list-style: none; padding: 0; }
-  .reading-keypoints li { font-size: 13px; color: #333; padding: 4px 0; border-bottom: 1px solid #f0f0f0; padding-left: 14px; position: relative; line-height: 1.4; }
-  .reading-keypoints li::before { content: '→'; position: absolute; left: 0; color: #aaa; font-size: 11px; top: 5px; }
-  .reading-link { display: inline-block; font-size: 12px; color: #0057ff; text-decoration: none; border: 1px solid #0057ff; border-radius: 20px; padding: 4px 12px; }
-
-  /* ── ACHIEVABLE ROW ── */
-  .achievable-row td { background: #f7f7f7; border-top: 2px solid #111 !important; }
-  .achievable-row td:first-child { color: #111 !important; font-weight: 700 !important; font-size: 11px; }
-  .achievable-text { font-size: 13px !important; color: #111 !important; line-height: 1.6; }
-
-  /* ── FOOTER ── */
-  .footer { margin-top: 48px; padding-top: 18px; border-top: 1px solid #e8e8e8; font-size: 12px; color: #aaa; display: flex; justify-content: space-between; align-items: center; }
-  .footer .cta { color: #0057ff; font-size: 12px; }
+  /* ── AI NEWS ── */
+  .ai-news { margin-bottom: 24px; padding-bottom: 22px; border-bottom: 1px solid #eee; }
+  .ai-news:last-child { border-bottom: none; }
+  .ai-head { display: flex; align-items: flex-start; gap: 12px; }
+  .ai-ico { flex-shrink: 0; width: 46px; height: 46px; border-radius: 12px; background: #f2e9ff; display: flex; align-items: center; justify-content: center; font-size: 24px; }
+  .ai-h-txt { flex: 1; }
+  .ai-title { font-weight: 700; font-size: 14.5px; line-height: 1.38; letter-spacing: -0.2px; }
+  .ai-date { font-size: 11px; color: #aaa; margin-top: 3px; }
+  .ai-desc { font-size: 13.5px; color: #333; line-height: 1.62; margin: 10px 0 10px; }
+  .ai-impact { background: #faf7ff; border-left: 3px solid #cc99ff; border-radius: 0 8px 8px 0; padding: 10px 12px; font-size: 13px; line-height: 1.62; color: #333; }
+  .ai-impact b { color: #6600cc; }
+  .ai-src { font-size: 11px; margin-top: 8px; }
+  .ai-src a { color: #0057ff; text-decoration: none; }
 </style>
 </head>
 <body>
 
 <!-- TAB NAV -->
 <nav class="tab-nav">
-  <button class="tab-btn active-wellness" onclick="switchTab('wellness')">
-    Wellness Brief
-  </button>
-  <button class="tab-btn" onclick="switchTab('market')">
-    Market Insight
-  </button>
-  <button class="tab-btn" onclick="switchTab('ai')">
-    AI Insight
-  </button>
+  <button class="tab-btn active-wellness" onclick="switchTab('wellness')">Wellness Brief</button>
+  <button class="tab-btn" onclick="switchTab('market')">Market Insight</button>
+  <button class="tab-btn" onclick="switchTab('ai')">AI Insight</button>
 </nav>
 
 
@@ -175,9 +119,8 @@
 
   <div class="tags">
     <span class="tag green">Creatine</span>
-    <span class="tag green">腸腦軸</span>
-    <span class="tag">VO2 Max</span>
-    <span class="tag">Women's Health</span>
+    <span class="tag green">VO2 Max</span>
+    <span class="tag green">Women's Health</span>
     <span class="tag">Longevity</span>
   </div>
 
@@ -185,128 +128,102 @@
 
   <!-- 001 CREATINE -->
   <div class="wcard">
-    <div class="wc-num">001</div>
-    <div class="pill-row" style="margin-bottom:14px">
-      <span class="pill green">認知表現</span><span class="pill">Creatine</span><span class="pill">Women</span>
-    </div>
+    <div class="wc-ico">💊</div>
     <div class="wc-title-en">Creatine isn't a gym supplement — it's fuel for your brain</div>
     <div class="wc-title-zh">肌酸不是健身品,是大腦的燃料</div>
 
     <div class="wc-seg">
-      <span class="wc-seg-label">Science · 科學</span>
-      <div class="wc-en">Creatine recharges ATP — your cells' energy currency — within seconds via phosphocreatine, a "fast battery." Neurons lean on it under stress, poor sleep and heavy focus. Supplementing lifts brain phosphocreatine 10–15%.</div>
-      <div class="wc-zh">肌酸透過磷酸肌酸(細胞的「快充電池」)在幾秒內把能量貨幣 ATP 充回來。大腦在高壓、睡不足、專注時特別依賴它;補充能讓腦內磷酸肌酸提升 10–15%。</div>
+      <span class="wc-seg-label">完整內容 · The full story</span>
+      <div class="wc-zh">你的每個細胞用一種叫 ATP 的分子當「能量貨幣」,但 ATP 只能撐幾秒就用完。肌酸的角色,是透過「磷酸肌酸」這個**快充電池**,在幾秒內把 ATP 補回來。肌肉爆發力靠它,而大腦是全身最耗能的器官之一——熬夜、高壓、連續開會、深度專注時,神經元對能量需求飆高,磷酸肌酸就是決定你「還能不能想清楚」的緩衝。研究顯示每天補 5g,能讓腦內磷酸肌酸提升 10–15%;在睡眠不足或高認知負荷下,補肌酸的人記憶、注意力、反應速度都明顯較好。</div>
+      <div class="wc-en">Creatine recharges ATP (your cells' energy currency) within seconds via phosphocreatine — a "fast battery." The brain is one of the body's most energy-hungry organs, and under sleep loss and heavy focus, phosphocreatine is the buffer for clear thinking. 5 g/day raises brain phosphocreatine 10–15%.</div>
     </div>
 
     <div class="wc-seg">
-      <span class="wc-seg-label">For you · 對你</span>
-      <div class="wc-en">Clearer thinking when you're under-slept; better memory, attention and processing speed under a heavy workload.</div>
-      <div class="wc-zh">睡不夠時思緒更清楚;高工作量下記憶、注意力、反應速度更好——不容易「腦當機」。</div>
+      <span class="wc-seg-label">深度洞察 · The deeper insight</span>
+      <div class="wc-zh">真正值得注意的不是「肌酸有效」,而是**整個產業對它的定位正在翻轉**。過去它被鎖在「健身、增肌」框架裡,所以最需要腦能量的女性、上班族、創作者反而沒在用。2026 年 Elysium 把它和 urolithin A 綁成「長壽系統」上市,是個訊號:肌酸正從運動補充品被重新包裝成「認知與抗老基礎設施」。但別被行銷帶跑——它是**穩定的中等增益,不是奇蹟**,真正的槓桿仍是睡眠與運動,肌酸是那個 CP 值極高的加分項。</div>
     </div>
 
     <div class="wc-seg">
-      <span class="wc-seg-label">For women · 對女性</span>
-      <div class="wc-en">Women store 70–80% less creatine than men, and the link to mood and brain energy sharpens around menstruation, pregnancy and menopause — so the upside may be even bigger. 3–5 g/day, safe and cheap.</div>
-      <div class="wc-zh">女性肌酸儲存量比男性低 70–80%,且在月經、懷孕、更年期等荷爾蒙波動期,與情緒和腦能量的關聯更明顯,邊際效益可能更大。每日 3–5g,安全又便宜。</div>
+      <span class="wc-seg-label warn">誠實限制 · Caveats</span>
+      <div class="wc-zh">效果因人而異;腎臟疾病者補充前請諮詢醫師;它加分但不能取代睡眠、飲食、運動這些地基。</div>
+    </div>
+
+    <div class="wc-seg">
+      <span class="wc-seg-label">對女性 · For women</span>
+      <div class="wc-zh">女性天生肌酸儲存量比男性低 70–80%,且月經、懷孕、更年期等雌激素波動期,大腦能量與情緒對肌酸更敏感——代表女性補肌酸在情緒、認知、肌肉與骨骼上的邊際效益,很可能比男性更大,卻是最被忽略的族群。</div>
+    </div>
+
+    <div class="wc-seg">
+      <span class="wc-seg-label">可執行 · Do this</span>
+      <div class="wc-zh">每天 3–5g 一般肌酸(creatine monohydrate),配水或咖啡,任何時間都行,不需要「加載期」。安全、便宜、有大量長期數據。</div>
     </div>
 
     <div class="wc-src">🔗 <a href="https://www.nutritionaloutlook.com/view/elysium-health-creatine-longevity-system" target="_blank">Elysium CREATINE+ / Nutritional Outlook (2026.06) ↗</a></div>
   </div>
 
-  <!-- 002 FERMENTED -->
+  <!-- 002 VO2 MAX -->
   <div class="wcard">
-    <div class="wc-num">002</div>
-    <div class="pill-row" style="margin-bottom:14px">
-      <span class="pill green">代謝智能</span><span class="pill">Gut-Brain</span><span class="pill">Mood</span>
-    </div>
-    <div class="wc-title-en">Two servings of kimchi a day quiets your brain's alarm</div>
-    <div class="wc-title-zh">一天兩份泡菜,把大腦的警報器關小</div>
-
-    <div class="wc-seg">
-      <span class="wc-seg-label">Science · 科學</span>
-      <div class="wc-en">Your gut and brain talk over the "gut-brain axis." Live-culture foods (kimchi, kefir, miso, kombucha) raise microbial diversity, lower inflammation, and boost GABA — the neurotransmitter that hits the brakes on your brain — calming the amygdala, your fear-and-threat center.</div>
-      <div class="wc-zh">腸道和大腦透過「腸腦軸」對話。發酵食物(泡菜、克菲爾、味噌、康普茶)提升腸道菌多樣性、降發炎,並促進 GABA(讓大腦踩剎車的神經傳導物質),安撫杏仁核——你的恐懼與威脅中樞。</div>
-    </div>
-
-    <div class="wc-seg">
-      <span class="wc-seg-label">For you · 對你</span>
-      <div class="wc-en">A food lever for mood and stress, not just digestion. Aim for 1–2 servings daily (4–6 while recovering from antibiotics).</div>
-      <div class="wc-zh">這是用食物調情緒與壓力的槓桿,不只助消化。每天 1–2 份(抗生素後恢復期 4–6 份)。</div>
-    </div>
-
-    <div class="wc-src">🔗 <a href="https://www.naturalnews.com/2026-05-19-fermented-foods-ancient-tradition-validated-by-modern-science.html" target="_blank">Fermented foods & mood / Stanford (2026.05) ↗</a></div>
-  </div>
-
-  <!-- 003 VO2 MAX -->
-  <div class="wcard">
-    <div class="wc-num">003</div>
-    <div class="pill-row" style="margin-bottom:14px">
-      <span class="pill green">長壽基礎</span><span class="pill">VO2 Max</span><span class="pill">Performance</span>
-    </div>
+    <div class="wc-ico">🫀</div>
     <div class="wc-title-en">One number predicts your death better than cholesterol</div>
     <div class="wc-title-zh">有一個數字比膽固醇更能預測你哪天死</div>
 
     <div class="wc-seg">
-      <span class="wc-seg-label">Science · 科學</span>
-      <div class="wc-en">VO2 max is the most oxygen your body can use at peak effort — a single score for your whole engine: heart, lungs, blood, vessels and mitochondria. Large studies (JAMA 2018) found the least-fit face several-fold higher mortality — a bigger risk than smoking or diabetes.</div>
-      <div class="wc-zh">VO2 max 是你極限時每分鐘能利用的最大氧氣量——是你整台引擎(心、肺、血液、血管、粒線體)的總分。大型研究(JAMA 2018)發現體能最差的一群死亡風險高出數倍,甚至大於抽菸與糖尿病。</div>
+      <span class="wc-seg-label">完整內容 · The full story</span>
+      <div class="wc-zh">VO2 max 是你極限運動時每分鐘能利用的最大氧氣量。它是「總分」,因為氧氣要被用掉得經過一整條鏈:肺送氧→心臟打血→血管運送→肌肉裡的粒線體燃燒。任一環弱,分數就掉,所以一個數字同時反映心、肺、循環與代謝。2018 年克里夫蘭診所發表在 JAMA 的研究(追蹤 12 萬人)發現:心肺適能**最低**的一群,校正後死亡風險是最高群的約 **5 倍**,風險甚至大於抽菸、糖尿病——而且體能越好,死亡率越低,沒有上限。</div>
+      <div class="wc-en">VO2 max is the max oxygen your body can use at peak effort — a single score for your whole engine (heart, lungs, blood, mitochondria). A 2018 JAMA study (122,000 people) found the least-fit had ~5× the mortality of the fittest, a bigger risk than smoking or diabetes, with no ceiling to the benefit.</div>
     </div>
 
     <div class="wc-seg">
-      <span class="wc-seg-label">For you · 對你</span>
-      <div class="wc-en">A high VO2 max = more physiological reserve to survive illness, injury and aging. Build it with Attia's 4×4: 4–6 rounds of 3–4 min at 90–95% max heart rate, on a Zone 2 base.</div>
-      <div class="wc-zh">VO2 max 高 = 更多生理儲備,生病、受傷、老化時更撐得住。用 Attia 的 4×4:4–6 組、每組 3–4 分鐘衝到 90–95% 最大心率,搭 Zone 2 打底。</div>
+      <span class="wc-seg-label">深度洞察 · The deeper insight</span>
+      <div class="wc-zh">三層別人不會告訴你的:①它衡量的是**儲備,不是表現**——你日常用不到它,但它高,代表你生病、老化、極端壓力時有更大餘裕撐過去,是身體的「戰備存款」。②**大多數人練錯強度**——卡在不上不下的中等強度最沒效益;真正有效是兩極化:大量輕鬆(Zone 2)+ 少量真的很喘(間歇)。③**幾乎任何年齡都能練回來**,基因約決定一半,另一半在你手上。</div>
     </div>
 
-    <div class="wc-src">🔗 <a href="https://www.nad.com/news/dr-peter-attias-vo2-max-protocol-and-heart-health-supplements-for-longevity" target="_blank">Attia VO2 max protocol / NAD.com (2026) ↗</a></div>
+    <div class="wc-seg">
+      <span class="wc-seg-label warn">誠實限制 · Caveats</span>
+      <div class="wc-zh">基因約占 50%,每人對訓練反應差異大;穿戴裝置(Apple Watch、Garmin)的估算值只能看趨勢,絕對數字別太當真。</div>
+    </div>
+
+    <div class="wc-seg">
+      <span class="wc-seg-label">對女性 · For women</span>
+      <div class="wc-zh">女性 VO2 max 絕對值天生較低,且更年期後下降會加速(每十年約掉 10%,停經後更快)——代表女性中年更需要主動用間歇訓練把上限撐住,否則流失比男性快。</div>
+    </div>
+
+    <div class="wc-seg">
+      <span class="wc-seg-label">可執行 · Do this</span>
+      <div class="wc-zh">每週 2–3 次 Zone 2(能講完整句子的強度,30–45 分)打底 + 1 次挪威式 4×4:4 組、每組 4 分鐘衝到 85–95% 最大心率、中間 3 分鐘慢走。研究顯示 8 週可提升約 10% VO2 max。</div>
+    </div>
+
+    <div class="wc-src">🔗 <a href="https://www.nad.com/news/dr-peter-attias-vo2-max-protocol-and-heart-health-supplements-for-longevity" target="_blank">Attia VO2 max protocol / NAD.com ↗</a></div>
   </div>
 
-  <!-- 004 CYCLE & COGNITION -->
+  <!-- 003 CYCLE & COGNITION -->
   <div class="wcard">
-    <div class="wc-num">004</div>
-    <div class="pill-row" style="margin-bottom:14px">
-      <span class="pill green">女性生理</span><span class="pill">Menstrual Cycle</span><span class="pill">Cognition</span>
-    </div>
+    <div class="wc-ico">♀️</div>
     <div class="wc-title-en">Your memory peaks right before ovulation</div>
     <div class="wc-title-zh">妳的記憶力在排卵前達到高峰</div>
 
     <div class="wc-seg">
-      <span class="wc-seg-label">Science · 科學</span>
-      <div class="wc-en">A 2026 study tracking cognition across the menstrual cycle found memory and attention peak in the late follicular phase — when estrogen, which strengthens neural connections, is at its highest.</div>
-      <div class="wc-zh">一項 2026 研究追蹤月經週期的認知變化,發現記憶與注意力在濾泡期後段(雌激素高峰)表現最好——雌激素被認為能強化神經連結。</div>
+      <span class="wc-seg-label">完整內容 · The full story</span>
+      <div class="wc-zh">一項 2026 研究追蹤女性在月經不同階段的認知表現,發現記憶與注意力在**排卵前(濾泡期後段)**表現最好——這時雌激素達到高峰,而雌激素被認為能強化大腦的神經連結。相對地,經前(黃體期後段)雌激素與黃體素劇烈變動,不少人會感覺「腦霧」、專注力下降。換句話說,女性的認知不是「不穩定」,而是**有規律、可預測的週期性**。</div>
+      <div class="wc-en">A 2026 study tracking cognition across the menstrual cycle found memory and attention peak in the late follicular phase, when estrogen — which strengthens neural connections — is highest. Women's cognition isn't "unstable"; it's cyclical and predictable.</div>
     </div>
 
     <div class="wc-seg">
-      <span class="wc-seg-label">For women · 對女性</span>
-      <div class="wc-en">Where you can, aim your hardest cognitive work — big pitches, learning, decisions — at this window, and schedule recovery and low-stakes tasks premenstrually. This is cycle syncing's most evidence-backed piece.</div>
-      <div class="wc-zh">盡量把最耗腦的事(重要簡報、學習、決策)排進這個高峰段,低谷期(經前)安排恢復性、低壓的任務。這是 cycle syncing 最有實證的一塊。</div>
+      <span class="wc-seg-label">深度洞察 · The deeper insight</span>
+      <div class="wc-zh">這是「cycle syncing(週期同步)」裡**最有科學根據的一塊**——比「依週期調整運動」(主觀有感、但客觀表現差異證據薄弱)扎實得多。更大的意義:如果你知道自己的高峰與低谷,就能**主動設計你的一個月**,把重要決策排在對的時間,而不是被荷爾蒙牽著走。背景要記得:女性只占運動與生理研究的約 6%,這領域整體資料嚴重不足。</div>
+    </div>
+
+    <div class="wc-seg">
+      <span class="wc-seg-label warn">誠實限制 · Caveats</span>
+      <div class="wc-zh">個體差異大,不是每個人都完全照這規律;別把生活過度綁死在週期上,把它當「參考地圖」而非鐵律。</div>
+    </div>
+
+    <div class="wc-seg">
+      <span class="wc-seg-label">可執行 · Do this</span>
+      <div class="wc-zh">用經期 App 記錄 2–3 個月,畫出你自己的專注/精力曲線;把重要簡報、學習、談判排進排卵前的高峰段,經前則安排恢復性、低壓的任務。</div>
     </div>
 
     <div class="wc-src">🔗 <a href="https://www.mdpi.com/2079-7737/14/8/1060" target="_blank">Menstrual cycle & cognition / MDPI Biology (2026) ↗</a></div>
-  </div>
-
-  <!-- 005 UROLITHIN A -->
-  <div class="wcard">
-    <div class="wc-num">005</div>
-    <div class="pill-row" style="margin-bottom:14px">
-      <span class="pill green">恢復與生物優化</span><span class="pill">Urolithin A</span><span class="pill">Mitochondria</span>
-    </div>
-    <div class="wc-title-en">The compound that swaps out your cells' dead batteries</div>
-    <div class="wc-title-zh">幫細胞換掉壞電池的那個成分</div>
-
-    <div class="wc-seg">
-      <span class="wc-seg-label">Science · 科學</span>
-      <div class="wc-en">Urolithin A isn't something you eat directly — your gut bacteria make it from polyphenols in pomegranate, walnuts and berries. But only ~40% of people carry the right bacteria to produce enough. It switches on "mitophagy" — recycling worn-out mitochondria (your cells' power plants) for fresh ones.</div>
-      <div class="wc-zh">Urolithin A 不是你直接吃到的——腸道細菌把石榴、核桃、莓果裡的多酚分解後才產生。但只有約 40% 的人有對的菌能製造足量。它啟動「粒線體自噬(mitophagy)」——回收老舊粒線體(細胞的發電廠)、換上新的。</div>
-    </div>
-
-    <div class="wc-seg">
-      <span class="wc-seg-label">For you · 對你</span>
-      <div class="wc-en">A supplement route to muscle strength, endurance and cellular aging — relevant if you sit a lot and want to defend your energy. A 2026 review links it to better strength and fitness.</div>
-      <div class="wc-zh">一條主打肌力、耐力與細胞抗老的補充路徑——久坐、想守住體能的人特別相關。2026 年一篇回顧連結它與肌力和體能的改善。</div>
-    </div>
-
-    <div class="wc-src">🔗 <a href="https://www.sciencedaily.com/releases/2026/05/260504023828.htm" target="_blank">Mitochondrial longevity supplements / ScienceDaily (2026.05) ↗</a></div>
   </div>
 
   <hr class="section-divider">
@@ -320,13 +237,7 @@
   </div>
 
   <div class="bonus-card">
-    <div class="bonus-tag">Reel 02 · 對應 002 發酵食物</div>
-    <div class="bonus-cover">焦虑住在你的肠子里 / Your anxiety lives in your gut</div>
-    <div class="bonus-hook">"I fixed my 3am spiraling with… kimchi. 不是冥想,是我的肠道菌。Let me explain."</div>
-  </div>
-
-  <div class="bonus-card">
-    <div class="bonus-tag">Reel 03 · 對應 004 週期</div>
+    <div class="bonus-tag">Reel 02 · 對應 003 週期</div>
     <div class="bonus-cover">别在经前逼自己 / Stop forcing yourself premenstrually</div>
     <div class="bonus-hook">"You're not lazy that week. 妳不是懒。Your brain is literally running on less estrogen."</div>
   </div>
@@ -343,110 +254,70 @@
 
   <div class="header">
     <h1>📊 Market Insight</h1>
-    <div class="date">Diana Lee © 2026.07.26 · 05:00</div>
+    <div class="date">Daily Brief — 2026.07.26 · 05:00</div>
   </div>
 
   <div class="tags">
     <span class="tag blue">大盤</span>
     <span class="tag blue">科技股</span>
+    <span class="tag">AI 資本支出</span>
     <span class="tag">油價</span>
-    <span class="tag">生技</span>
     <span class="tag">裝修公司</span>
   </div>
 
   <div class="section-title">Today's<br>Market</div>
 
-  <div class="card">
-    <div class="card-number">001</div>
-    <table class="card-table">
-      <tr><td>方向</td><td><div class="pill-row"><span class="pill red">偏空 ▼ 兩週連跌</span></div></td></tr>
-      <tr><td>故事</td><td>科技股連續兩週承壓。上週能源與原物料領漲，但科技與成長股遭大量賣壓，Alphabet 與晶片股尤其疲軟。關稅上路、財報與地緣風險交織，資金從高估值科技股撤向防禦性資產。QQQ 從 7 月高點約 $748 回落到 $684，兩週連跌讓看空聲音重回主流。</td></tr>
-      <tr><td>你要做什麼</td><td class="action-text">不動，繼續等。</td></tr>
-      <tr class="achievable-row"><td>Achievable</td><td class="achievable-text">市場情緒悲觀 → 延後非緊急支出決策，不擴張；客戶付款條件收緊，縮短帳期；現金為王。</td></tr>
-    </table>
+  <div class="mk-lead">為什麼這幾天股市跌?一句話:大家開始怕「科技公司在 AI 上花太多錢,但還賺不回來」。</div>
+
+  <div class="mk-block">
+    <span class="mk-label">打個比方 · Analogy</span>
+    <div class="mk-body">像一間餐廳一直借錢裝潢、擴店,客人確實變多了,但錢一直往外流、還沒開始賺。一開始大家覺得「有野心、看好」,現在開始怕「你到底什麼時候才會賺錢?」</div>
   </div>
 
-  <div class="card">
-    <div class="card-number">002</div>
-    <table class="card-table">
-      <tr>
-        <td>QQQ 今日</td>
-        <td>
-          <div class="current-price">$684.23</div>
-          <div class="price-change down">▼ 自 7 月高點回落 · Jul 24 收盤</div>
-          <span class="safe-badge">✓ 安全區間</span>
-        </td>
-      </tr>
-      <tr>
-        <td>出手雷達</td>
-        <td>
-          <div class="trigger-bar">
-            <div class="label">基準 — 近期高點 $746 · 低點 $511.93（2025年5月30日）· 區間 $234 · 中間值 $629</div>
-            <div class="trigger-row">
-              <span>⬇ <span class="price">$699</span></span>
-              <span style="color:#555;font-size:12px">已跌破　已進入觀察區</span>
-            </div>
-            <div class="trigger-row">
-              <span>⬇ <span class="price">$669</span></span>
-              <span style="color:#555;font-size:12px">距今 -2.2%　分批開始買進</span>
-            </div>
-            <div class="trigger-row">
-              <span>⬇ <span class="price">$629</span> <span style="font-size:11px;color:#aaa">高低中間值</span></span>
-              <span style="color:#003d99;font-size:12px;font-weight:600">距今 -8.1%　加快節奏</span>
-            </div>
-            <div class="trigger-row">
-              <span>⬇ <span class="price">$511</span> <span style="font-size:11px;color:#aaa">2025.05 低點</span></span>
-              <span style="color:#cc0000;font-size:12px;font-weight:600">距今 -25.2%　全力出手</span>
-            </div>
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td>你的成本</td>
-        <td>
-          <div class="trigger-bar">
-            <div class="label">QQQ 平均買點參考</div>
-            <div class="trigger-row">
-              <span>你的平均成本</span>
-              <span style="font-weight:700">$455.60</span>
-            </div>
-            <div class="trigger-row">
-              <span>目前含報酬</span>
-              <span style="color:#2a6e00;font-weight:700">+$228.63（+50.2%）</span>
-            </div>
-            <div class="trigger-row">
-              <span>即使跌到 2025 低點 $511</span>
-              <span style="color:#2a6e00;font-size:12px">你仍有 +12% 的緩衝</span>
-            </div>
-          </div>
-        </td>
-      </tr>
-      <tr class="achievable-row"><td>Achievable</td><td class="achievable-text">科技股高點回落、高端客戶帳面縮水 → 主動聯繫 6 個月內詢價未成案的客戶；準備「局部翻新小方案」話術，讓猶豫客戶先從小案開始。</td></tr>
-    </table>
+  <div class="mk-block">
+    <span class="mk-label">具體發生什麼 · What happened</span>
+    <div class="mk-body">上週 <b>Google</b> 財報其實賺得比預期還多,但它同時說「要再砸更多錢蓋 AI 設備」,股價反而跌了 5–7%;<b>台積電</b>也一樣。投資人怕它們花錢比賺錢快。剛好中東又打起來、油價漲破 <b>$100</b>,大家更緊張,就一起把科技股賣掉——科技巨頭一天就蒸發了快 <b>8,000 億美元</b>。(關稅、韓國那些是背景雜訊,不是主因。)</div>
   </div>
 
-  <div class="card">
-    <div class="card-number">003</div>
-    <table class="card-table">
-      <tr><td>機會一</td><td><strong>VNQ</strong>（房地產 ETF）<br>低估約 12%。升息循環結束後最被冷落的板塊，估值差距只有金融海嘯和 COVID 當時才這麼大過。</td></tr>
-      <tr><td>機會二</td><td><strong>GE Vernova</strong><br>AI 機房用電量暴增，電網建設跟不上。這家公司是幫電網升級的設備供應商，還沒被市場炒作。</td></tr>
-      <tr><td>機會三</td><td><strong>SLB</strong><br>油價高，石油公司拼命鑽井，SLB 就是幫他們鑽的大廠，股價仍低於歷史均值。</td></tr>
-      <tr class="achievable-row"><td>Achievable</td><td class="achievable-text">AI 機房電力需求爆增 → 評估是否切入 AI 數據中心特殊裝修利基（散熱、線路、隔熱），競爭者少、需求成長快；油價高 → 採購進口建材提前鎖量鎖價。</td></tr>
-    </table>
+  <div class="mk-block">
+    <span class="mk-label">長期投資怎麼看 · Long-term view</span>
+    <div class="mk-body">多數長線投資人把這當成**短期情緒波動,不是崩盤**,理由:①這些公司本業還在賺錢(Google 是超預期的);②它們燒的錢是「蓋未來產能」,不是虧損——像 Amazon 當年連虧多年蓋雲端,後來稱霸;③這種「AI 何時回本」的擔憂一兩年出現過好幾次,每次恐慌後又漲回去。<br><br>真正的多空分歧在:
+      <ul>
+        <li><b>看多</b>:AI 是下個時代的「鐵路水電」,現在燒錢搶建應該的,早期不賺很正常。</li>
+        <li><b>看空</b>:若一兩年內還看不到實際獲利,現在股價就太貴、有泡沫。</li>
+        <li><b>聰明錢</b>:從最貴的科技股挪一部分到能源、價值股,但沒全面撤離——是減碼不是逃命。</li>
+      </ul>
+      <b>該盯的訊號</b>:下一季財報,這些 AI 投資有沒有開始「生出營收」。</div>
   </div>
 
-  <div class="card">
-    <div class="card-number">004</div>
-    <table class="card-table">
-      <tr><td>裝修公司</td><td>建材採購建議提前鎖定供應商報價與數量，避免油價持續高漲帶動運費上升。</td></tr>
-      <tr><td>合約保護</td><td>報價單加入原物料浮動條款，保護你的利潤空間。</td></tr>
-      <tr class="achievable-row"><td>Achievable</td><td class="achievable-text">本月內與廠商洽談「價格保留期」合約；更新進口材料台灣替代品清單；報價模板今週加入浮動條款。</td></tr>
-    </table>
+  <div class="mk-block">
+    <span class="mk-label">對你 · For Achievable</span>
+    <div class="mk-body">你是長期持有 QQQ、目前 +50% 的人。這種情緒面回檔,歷史上多半是**加碼機會而非砍倉理由**——這正是下面「出手雷達」存在的意義:別在恐慌時追殺,照計畫分批接。實務另一個真影響:<b>油價破百→進口建材與運費看漲,先跟供應商鎖價</b>。</div>
+  </div>
+
+  <div class="mk-sub">QQQ 今日 · Jul 24 收盤</div>
+  <div class="current-price">$684.23</div>
+  <div class="price-change down">▼ 自 7 月高點約 $748 回落</div>
+  <span class="safe-badge">✓ 仍在你的成本之上</span>
+
+  <div class="mk-sub" style="margin-top:22px">出手雷達 · 分批買進計畫</div>
+  <div class="trigger-bar">
+    <div class="label">基準 — 近期高點 $748 · 低點 $511.93(2025.05）· 中間值 $629</div>
+    <div class="trigger-row"><span>⬇ <span class="price">$669</span></span><span style="color:#555;font-size:12px">距今 -2.2%　分批開始買進</span></div>
+    <div class="trigger-row"><span>⬇ <span class="price">$629</span> <span style="font-size:11px;color:#aaa">中間值</span></span><span style="color:#003d99;font-size:12px;font-weight:600">距今 -8.1%　加快節奏</span></div>
+    <div class="trigger-row"><span>⬇ <span class="price">$511</span> <span style="font-size:11px;color:#aaa">2025.05 低點</span></span><span style="color:#cc0000;font-size:12px;font-weight:600">距今 -25.2%　全力出手</span></div>
+  </div>
+
+  <div class="mk-sub">你的成本 · Your position</div>
+  <div class="trigger-bar">
+    <div class="trigger-row"><span>你的平均成本</span><span style="font-weight:700">$455.60</span></div>
+    <div class="trigger-row"><span>目前含報酬</span><span style="color:#2a6e00;font-weight:700">+$228.63（+50.2%）</span></div>
+    <div class="trigger-row"><span>即使跌到 2025 低點 $511</span><span style="color:#2a6e00;font-size:12px">你仍有 +12% 緩衝</span></div>
   </div>
 
   <div class="footer">
     <span>📊 Market Insight</span>
-    <span class="cta">Diana Lee · 2026.07.26</span>
+    <span class="cta">2026.07.26</span>
   </div>
 </div>
 
@@ -456,126 +327,92 @@
 
   <div class="header">
     <h1>🤖 AI Insight</h1>
-    <div class="date">Diana Lee © 2026.07.26 · 05:00</div>
+    <div class="date">Daily Brief — 2026.07.26 · 05:00</div>
   </div>
 
   <div class="tags">
-    <span class="tag" style="background:#f0e6ff;border-color:#cc99ff;color:#6600cc;font-weight:600">Claude</span>
-    <span class="tag" style="background:#f0e6ff;border-color:#cc99ff;color:#6600cc;font-weight:600">Gemini</span>
-    <span class="tag">算力</span>
-    <span class="tag">新功能</span>
+    <span class="tag purple">Claude</span>
+    <span class="tag purple">Nvidia</span>
+    <span class="tag">能源</span>
+    <span class="tag">機器人</span>
+    <span class="tag">監管</span>
   </div>
 
-  <div class="section-title">Today's<br>AI Brief</div>
+  <div class="section-title">今日<br>AI 10 則</div>
 
-  <!-- AI 001 -->
-  <div class="card">
-    <div class="card-number">001</div>
-    <table class="card-table">
-      <tr><td>來源</td><td>Anthropic · Claude</td></tr>
-      <tr><td>是什麼</td><td><strong>Claude Opus 5 正式發布</strong>（7月24日）</td></tr>
-      <tr><td>白話說明</td><td>Anthropic 昨天（7/24）推出新一代 Claude Opus 5，一發布就登上 Artificial Analysis 智慧指數第一（61 分）、Agentic（自主完成任務）指數 55.3，而且價格只要 $5 / $25 per 1M tokens——是前一代旗艦的一半。白話：目前最聰明的 AI，還同時變便宜了。</td></tr>
-      <tr><td>重要嗎</td><td>這是目前綜合能力全球第一的 AI 模型。降價會加速企業導入，AI 洗牌又進一步。</td></tr>
-      <tr><td>你要留意</td><td>Claude Code（Anthropic 的 AI 寫程式工具）正在快速普及，這對科技股的估值有長期支撐作用。</td></tr>
-      <tr class="achievable-row"><td>Achievable</td><td class="achievable-text">Claude 現在可以一次讀完大量文件。你可以把所有報價單、合約、建材規格表丟給它，讓它幫你整理比較，找出最划算的選項——這件事以前要花你的團隊好幾小時。</td></tr>
-    </table>
+  <div class="ai-news">
+    <div class="ai-head"><div class="ai-ico">🧠</div><div class="ai-h-txt"><div class="ai-title">Claude Opus 5 登頂,還會「自己操作電腦」</div><div class="ai-date">Anthropic · 2026.07.24</div></div></div>
+    <div class="ai-desc">能力全球第一,新增自己點按軟體、填表、跨程式把事做完的能力。</div>
+    <div class="ai-impact"><b>實際影響</b>:以前 AI 只會給建議;現在可讓它自己登入你的報價/會計軟體,把 20 份報價讀完做成比較表、匯出 PDF。</div>
+    <div class="ai-src">🔗 <a href="https://www.anthropic.com/news/claude-opus-5" target="_blank">Anthropic ↗</a></div>
   </div>
 
-  <!-- AI 002 -->
-  <div class="card">
-    <div class="card-number">002</div>
-    <table class="card-table">
-      <tr><td>來源</td><td>OpenAI · Google</td></tr>
-      <tr><td>是什麼</td><td><strong>GPT-5.6 成 ChatGPT 新預設；Google Gemini 旗艦延期</strong></td></tr>
-      <tr><td>白話說明</td><td>OpenAI 的 GPT-5.6 家族（Sol / Terra / Luna）於 7/9 全面上線、成為 ChatGPT 新預設；Google 7/21 推出更快的 Gemini 3.6 Flash，但坦承旗艦模型 3.5 Pro 在程式與長任務推理不如預期，延後數月。三大廠每幾週就洗牌一次。</td></tr>
-      <tr><td>重要嗎</td><td>模型迭代極快，「更快更便宜」讓中小企業更用得起 AI。啟示：別把工作流程綁死在單一家。</td></tr>
-      <tr><td>你要留意</td><td>選 AI 工具以能力／價格隨時換，保持彈性，別被單一平台鎖住。</td></tr>
-      <tr class="achievable-row"><td>Achievable</td><td class="achievable-text">用 ChatGPT／Gemini 的自動化功能幫你整理客戶需求、產生報價草稿、追蹤施工進度——相當於一個不下班的行政助理。價格持續下降，中小企業完全用得起。</td></tr>
-    </table>
+  <div class="ai-news">
+    <div class="ai-head"><div class="ai-ico">⚡</div><div class="ai-h-txt"><div class="ai-title">AI 太耗電,四大巨頭砸錢重啟核電</div><div class="ai-date">能源 · 2026.07</div></div></div>
+    <div class="ai-desc">微軟、Meta、Google、Amazon 2026 年簽下近 10GW 核電協議(夠供 700 萬戶);美國資料中心用電從 2023 的 23GW 飆到今年 42GW,排隊接電網要等近 5 年。</div>
+    <div class="ai-impact"><b>實際影響</b>:電力是 AI 最大瓶頸=長線最穩的投資主題之一(核電、電網設備如 GE Vernova);也代表 AI 工具短期不會變便宜太多。</div>
+    <div class="ai-src">🔗 <a href="https://www.forbes.com/sites/kensilverstein/2026/07/26/the-ai-boom-is-making-nuclear-power-bankable-again/" target="_blank">Forbes ↗</a></div>
   </div>
 
-  <!-- AI 003 -->
-  <div class="card">
-    <div class="card-number">003</div>
-    <table class="card-table">
-      <tr><td>來源</td><td>產業趨勢 · 算力</td></tr>
-      <tr><td>是什麼</td><td><strong>AI 用電危機正在加劇</strong></td></tr>
-      <tr><td>白話說明</td><td>每一個 AI 回覆你的問題，背後都有一台伺服器在運算，而這些伺服器非常耗電。Morgan Stanley 預測，到 2028 年光是美國的 AI 機房用電量就會達到 74GW——但現有電網只能供應 25GW，缺口高達 49GW。這個問題沒有人能跳過，電力基礎建設正在成為 AI 產業最大的瓶頸。</td></tr>
-      <tr><td>重要嗎</td><td>非常重要。這就是為什麼 GE Vernova、Eaton 這類「幫電網升級」的公司最近被大量機構投資人關注。</td></tr>
-      <tr><td>你要留意</td><td>這個趨勢還沒被散戶廣泛知道，但已經是機構圈討論最多的 AI 相關投資主題之一。</td></tr>
-      <tr class="achievable-row"><td>Achievable</td><td class="achievable-text">這和你直接關係不大，但說明一件事：AI 的基礎建設成本還在上升，代表 AI 工具的價格短期內不會大幅下降。現在就開始把 AI 工具導入公司流程，比等到「普及之後再說」更有競爭優勢。</td></tr>
-    </table>
+  <div class="ai-news">
+    <div class="ai-head"><div class="ai-ico">🖥️</div><div class="ai-h-txt"><div class="ai-title">Nvidia 新一代「Rubin」晶片全面量產</div><div class="ai-date">Nvidia · 2026.07.16</div></div></div>
+    <div class="ai-desc">確認到 2027 年有上兆美元 AI 晶片需求;新一代 Rubin 進入量產,AWS、Google、微軟下半年開賣。</div>
+    <div class="ai-impact"><b>實際影響</b>:Nvidia 仍是這波 AI 的「賣鏟人」,但股價波動大($206 上下);它的訂單能見度=判斷 AI 熱度是否退燒的溫度計。</div>
+    <div class="ai-src">🔗 <a href="https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Kicks-Off-the-Next-Generation-of-AI-With-Rubin--Six-New-Chips-One-Incredible-AI-Supercomputer/default.aspx" target="_blank">Nvidia ↗</a></div>
   </div>
 
-  <hr class="section-divider">
-  <div class="section-title">本週<br>大事記</div>
-
-  <div class="reading-card">
-    <div class="reading-number">News · 01</div>
-    <div class="reading-title">Claude Opus 5 發布 — Anthropic</div>
-    <div class="reading-source">anthropic.com · 2026.07.24</div>
-    <div class="reading-summary">Anthropic 新一代旗艦模型，發布即登上 Artificial Analysis 智慧指數第一（61 分），綜合能力全球最強，且價格砍半。</div>
-    <div class="reading-keypoints"><ul>
-      <li>智慧指數 61、Agentic 指數 55.3，均為業界第一</li>
-      <li>價格 $5 / $25 per 1M tokens，是前代旗艦的一半</li>
-      <li>自主完成多步驟任務（agentic）能力大幅提升</li>
-    </ul></div>
-    <a class="reading-link" href="https://www.anthropic.com/news" target="_blank">閱讀全文 ↗</a>
+  <div class="ai-news">
+    <div class="ai-head"><div class="ai-ico">🇨🇳</div><div class="ai-h-txt"><div class="ai-title">中國 Moonshot 開源史上最大模型 Kimi K3,叫板 Claude</div><div class="ai-date">China · 2026.07.17</div></div></div>
+    <div class="ai-desc">2.8 兆參數、免費開源,內部測試稱與 Claude Opus 同級,一推出就登上程式能力榜首,被稱新一波「DeepSeek 時刻」。</div>
+    <div class="ai-impact"><b>實際影響</b>:頂級 AI 正在「白菜化」——免費開源逼得付費模型降價。對你:AI 成本會持續下降,早導入越划算。</div>
+    <div class="ai-src">🔗 <a href="https://www.scmp.com/tech/tech-trends/article/3360885/moonshot-ai-unveils-worlds-largest-open-source-ai-model-china-narrows-gap-us-rivals" target="_blank">SCMP ↗</a></div>
   </div>
 
-  <div class="reading-card">
-    <div class="reading-number">News · 02</div>
-    <div class="reading-title">GPT-5.6 成 ChatGPT 新預設 — OpenAI</div>
-    <div class="reading-source">openai.com · 2026.07.09</div>
-    <div class="reading-summary">OpenAI 的 GPT-5.6 家族（Sol / Terra / Luna）全面上線並成為 ChatGPT 新預設模型；同期 Google 旗艦 Gemini 3.5 Pro 因表現不如預期延後數月。</div>
-    <div class="reading-keypoints"><ul>
-      <li>GPT-5.6 三款分工（Sol / Terra / Luna），7/9 全面開放</li>
-      <li>Google 推 Gemini 3.6 Flash（7/21），但旗艦 3.5 Pro 延期</li>
-      <li>Meta 推 Muse Spark 1.1：可操作電腦的 agentic 模型</li>
-    </ul></div>
-    <a class="reading-link" href="https://llm-stats.com/ai-news" target="_blank">閱讀全文 ↗</a>
+  <div class="ai-news">
+    <div class="ai-head"><div class="ai-ico">💼</div><div class="ai-h-txt"><div class="ai-title">AI 開始大規模取代工作:今年逾半裁員點名 AI</div><div class="ai-date">Jobs · 2026.07</div></div></div>
+    <div class="ai-desc">全年約 32 萬人被裁,54% 明說因 AI;Meta 裁 8,000、Intuit 3,000、Atlassian 1,600。</div>
+    <div class="ai-impact"><b>實際影響</b>:被砍的是客服、資料輸入、內容審核等重複行政。對你:先讓 AI 接手最重複的行政,人力留給判斷、工班、客戶信任。</div>
+    <div class="ai-src">🔗 <a href="https://techcrunch.com/2026/07/06/the-running-list-major-tech-layoffs-in-2026-where-employers-cited-ai/" target="_blank">TechCrunch ↗</a></div>
   </div>
 
-  <div class="reading-card">
-    <div class="reading-number">News · 03</div>
-    <div class="reading-title">AI 電力缺口分析 — Morgan Stanley</div>
-    <div class="reading-source">morganstanley.com · 2026</div>
-    <div class="reading-summary">Morgan Stanley 最新報告指出 AI 資料中心的用電需求遠超電網供應能力，2028 年缺口將達 49GW。電力基礎建設正在成為整個 AI 產業的核心瓶頸，相關設備公司進入高速成長期。</div>
-    <div class="reading-keypoints"><ul>
-      <li>2028 年美國 AI 機房需電 74GW，現有電網僅能供 25GW</li>
-      <li>GE Vernova、Eaton、Quanta Services 直接受益</li>
-      <li>這個趨勢目前仍是機構投資人比散戶更早知道的資訊</li>
-    </ul></div>
-    <a class="reading-link" href="https://www.morganstanley.com/insights/articles/powering-ai-energy-market-outlook-2026" target="_blank">閱讀全文 ↗</a>
+  <div class="ai-news">
+    <div class="ai-head"><div class="ai-ico">🎨</div><div class="ai-h-txt"><div class="ai-title">室內設計 AI 爆發:照片/草圖秒變效果圖</div><div class="ai-date">Design · 2026</div></div></div>
+    <div class="ai-desc">Archfine、InteriorAI、RoomGPT、DecAI 能把空房照或手繪秒變效果圖、換材質;46% 建築師已用 AI。</div>
+    <div class="ai-impact"><b>實際影響</b>:提案當場出圖,客戶即時看不同磚材/配色,不用等渲染師 2–3 天,加快成交。<b>← 這則跟你最相關,建議先試。</b></div>
+    <div class="ai-src">🔗 <a href="https://illustrarch.com/artificial-intelligence/72649-ai-architecture-design.html" target="_blank">illustrarch ↗</a></div>
   </div>
 
-  <hr class="section-divider">
-  <div class="section-title">Insightful<br>Achievable</div>
-
-  <div class="card">
-    <div class="card-number">001</div>
-    <table class="card-table">
-      <tr><td>競爭格局</td><td><strong>入行門檻消失，但執行力的差距在擴大</strong><br>AI 讓任何人能快速生成設計提案和渲染圖，「會設計」不再是護城河。你真正的差異在於：材料判斷力、工班協調、和客戶建立信任的方式——這些 AI 無法取代。</td></tr>
-      <tr><td>客戶行為</td><td><strong>客戶帶著 AI 圖來找你，會越來越常見</strong><br>未來客戶在第一次會議前就有 AI 生成的「理想空間」，你的角色從「提案者」變成「可行性顧問」。建立一套引導客戶從 AI 概念圖回到現實施工的話術，是即將到來的核心競爭力。</td></tr>
-      <tr><td>定價壓力</td><td><strong>中低端市場最先被壓縮</strong><br>簡單翻新案的競爭者門檻已大幅降低。往精品施工、複雜整合、全屋規劃移動，是目前 AI 最難進入的區間，也是你應該集中資源的方向。</td></tr>
-      <tr><td>新市場</td><td><strong>AI 數據中心是新興裝修利基</strong><br>亞太地區正大量興建 AI 機房和科技辦公室，這類空間有特殊的隔熱、散熱、線路規劃需求，一般設計公司不熟悉。競爭者少、需求快速成長，值得評估是否切入。</td></tr>
-    </table>
+  <div class="ai-news">
+    <div class="ai-head"><div class="ai-ico">🛒</div><div class="ai-h-txt"><div class="ai-title">購物 AI 能自己下單付款了</div><div class="ai-date">OpenAI / Google · 2026.07</div></div></div>
+    <div class="ai-desc">AI 代理能接受付款、即時結帳、自己比價下單;Google 的代理能看手寫食譜自動買齊。</div>
+    <div class="ai-impact"><b>實際影響</b>:未來客戶叫 AI「幫我訂這空間要的家具」——曝光戰場從「客戶用 Google 搜尋」變成「怎麼讓 AI 推薦你」。</div>
+    <div class="ai-src">🔗 <a href="https://www.uschamber.com/co/good-company/launch-pad/agentic-ai-impact-consumer-business-2026" target="_blank">US Chamber ↗</a></div>
   </div>
 
-  <div class="card">
-    <div class="card-number">002</div>
-    <table class="card-table">
-      <tr><td>工作流程</td><td><strong>你現在的簡報流程可以這樣升級</strong></td></tr>
-      <tr><td>Adobe Firefly</td><td>Adobe 已將 AI 圖像生成整合進 Photoshop 和 Illustrator。你做客戶提案時，可以直接在 Photoshop 裡用文字描述生成空間氛圍圖、材質貼圖、燈光效果——不需要找外部渲染師，提案速度可以快 2-3 倍。</td></tr>
-      <tr><td>Adobe Express</td><td>Adobe Express 現在有 AI 簡報生成功能，可以把你的文字需求自動排版成精美的提案頁面。適合快速做初步提案給客戶確認方向，不需要花時間在版面設計上。</td></tr>
-      <tr><td>Gamma / Canva AI</td><td>如果你的提案是 PDF 或簡報形式，Gamma 可以把你的文字或草稿直接生成一份完整的視覺提案，風格一致、排版專業。適合做初次接案的概念提案，留下更多時間給真正需要你判斷的細節。</td></tr>
-      <tr><td>值得關注</td><td>Adobe 即將推出的 Project Concept 功能，可以根據空間照片自動生成不同風格的改造概念圖。一旦正式發布，你和客戶的第一次會議可以當場出圖——這會改變整個提案流程的節奏。</td></tr>
-    </table>
+  <div class="ai-news">
+    <div class="ai-head"><div class="ai-ico">🤖</div><div class="ai-h-txt"><div class="ai-title">人形機器人進工廠:歐洲誕生第一隻機器人獨角獸</div><div class="ai-date">Robotics · 2026.07.21</div></div></div>
+    <div class="ai-desc">倫敦 Humanoid 募 1.52 億美元、估值 13.5 億;Figure 03 已在 BMW 上工;中國 UBTECH 一款 $17,600 機器人接 1.3 萬張單。</div>
+    <div class="ai-impact"><b>實際影響</b>:製造/物流體力活先被取代,中長期可能壓低建材製造與搬運成本——採購策略可留意。</div>
+    <div class="ai-src">🔗 <a href="https://www.forbes.com/sites/johnkoetsier/2026/07/21/humanoid-raises-152-million-at-135-billion-valuation-europes-newest-robot-unicorn/" target="_blank">Forbes ↗</a></div>
+  </div>
+
+  <div class="ai-news">
+    <div class="ai-head"><div class="ai-ico">🏢</div><div class="ai-h-txt"><div class="ai-title">企業 AI 代理大爆發;Gartner:2,340 億美元軟體支出岌岌可危</div><div class="ai-date">Enterprise · 2026.07</div></div></div>
+    <div class="ai-desc">OpenAI、SAP 都推「能跑完整客戶流程的 AI 代理」;Gartner 估將威脅 2,340 億美元傳統軟體。</div>
+    <div class="ai-impact"><b>實際影響</b>:你在付月費的排程/CRM/客服軟體,未來可能被 AI 代理取代——採購 SaaS 前先問「AI 能不能自己做?」</div>
+    <div class="ai-src">🔗 <a href="https://aiagentstore.ai/ai-agent-news/2026-july" target="_blank">AIAgentStore ↗</a></div>
+  </div>
+
+  <div class="ai-news">
+    <div class="ai-head"><div class="ai-ico">⚖️</div><div class="ai-h-txt"><div class="ai-title">大廠開打:Apple 告 OpenAI、歐盟管 Meta、Google 旗艦延期</div><div class="ai-date">Regulation · 2026.07</div></div></div>
+    <div class="ai-desc">Apple 控 OpenAI 偷硬體機密、歐盟要規範 Meta 成癮設計、Google 旗艦 Gemini 因表現不如預期延後。</div>
+    <div class="ai-impact"><b>實際影響</b>:AI 進入「法律與監管期」,遊戲規則將被重寫,長期影響哪些工具能用、資料怎麼被保護。</div>
+    <div class="ai-src">🔗 <a href="https://techstartups.com/2026/07/17/top-tech-news-today-july-17-2026-anthropic-apple-google-meta-moonshot-ai-nvidia-more/" target="_blank">TechStartups ↗</a></div>
   </div>
 
   <div class="footer">
-    <span>AI Insight</span>
-    <span class="cta">Diana Lee · 2026.07.26</span>
+    <span>🤖 AI Insight</span>
+    <span class="cta">2026.07.26</span>
   </div>
 </div>
 
@@ -583,9 +420,7 @@
 <script>
   function switchTab(tab) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.tab-btn').forEach(b => {
-      b.classList.remove('active-wellness', 'active-market', 'active-ai');
-    });
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active-wellness', 'active-market', 'active-ai'));
     document.getElementById('page-' + tab).classList.add('active');
     const btns = document.querySelectorAll('.tab-btn');
     if (tab === 'wellness') btns[0].classList.add('active-wellness');
@@ -593,7 +428,6 @@
     if (tab === 'ai')       btns[2].classList.add('active-ai');
     window.scrollTo(0, 0);
   }
-
   const params = new URLSearchParams(window.location.search);
   const t = params.get('tab');
   if (['market','ai'].includes(t)) switchTab(t);
